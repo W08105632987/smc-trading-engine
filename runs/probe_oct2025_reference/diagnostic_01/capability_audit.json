@@ -1,0 +1,132 @@
+{
+  "audit_version": "1.0",
+  "audit_timestamp": "2026-10-05T08:50:00Z",
+  "baseline_directory": "runs/probe_oct2025_reference",
+  "engine": "REFERENCE",
+  "total_active_candidates_evaluated": 294,
+  "conclusion": "C \u2014 INSUFFICIENT; RERUN REQUIRED",
+  "conclusion_summary": "The existing artifacts fully preserve Stop ATR multiples, RR ratios, TP2 geometry, rejection codes, and lifecycle timestamps for all 294 candidates. However, candidate 'score' (0/294), 'D1 context' (0/294), and 'H4 context' breakdown (0/294) were not serialized into events.jsonl. Consequently, Score Near-Miss (65-69) and HTF breakdown cannot be performed without a diagnostic rerun.",
+  "sub_scope_feasibility": {
+    "geometry_analysis": "SUFFICIENT_WITH_DIAGNOSTIC_CODE",
+    "stop_near_miss_3_5_to_4_0_atr": "SUFFICIENT_WITH_DIAGNOSTIC_CODE",
+    "rr_near_miss_3_0_to_3_8_r": "SUFFICIENT_WITH_DIAGNOSTIC_CODE",
+    "tp2_geometry_audit": "SUFFICIENT_WITH_DIAGNOSTIC_CODE",
+    "funnel_reconstruction": "SUFFICIENT_WITH_DIAGNOSTIC_CODE",
+    "zero_trade_path_verification": "SUFFICIENT_WITH_DIAGNOSTIC_CODE",
+    "score_near_miss_65_to_69": "INSUFFICIENT_RERUN_REQUIRED",
+    "htf_context_breakdown": "INSUFFICIENT_RERUN_REQUIRED"
+  },
+  "rejection_counts": {
+    "STOP_TOO_WIDE": 126,
+    "RR_BELOW_MINIMUM": 72,
+    "HTF_CONTEXT_INVALID": 59,
+    "TP2_NOT_BEYOND_TP1": 34,
+    "STOP_BELOW_MINIMUM": 3,
+    "SCORE_BELOW_THRESHOLD": 0,
+    "WARMUP_PERIOD": 318
+  },
+  "field_availability_matrix": {
+    "candidate_id": {
+      "status": "AVAILABLE",
+      "count": 294,
+      "percentage": 100.0
+    },
+    "direction": {
+      "status": "AVAILABLE",
+      "count": 294,
+      "percentage": 100.0
+    },
+    "setup_timestamp": {
+      "status": "AVAILABLE",
+      "count": 294,
+      "percentage": 100.0
+    },
+    "zone_creation_timestamp": {
+      "status": "AVAILABLE",
+      "count": 294,
+      "percentage": 100.0
+    },
+    "zone_touch_info": {
+      "status": "AVAILABLE",
+      "count": 294,
+      "percentage": 100.0
+    },
+    "confirmation_timestamp": {
+      "status": "AVAILABLE",
+      "count": 294,
+      "percentage": 100.0
+    },
+    "entry_price": {
+      "status": "PARTIAL",
+      "count": 201,
+      "percentage": 68.37
+    },
+    "structural_stop": {
+      "status": "PARTIAL",
+      "count": 201,
+      "percentage": 68.37
+    },
+    "atr_at_decision": {
+      "status": "AVAILABLE",
+      "count": 294,
+      "percentage": 100.0
+    },
+    "stop_distance": {
+      "status": "AVAILABLE",
+      "count": 294,
+      "percentage": 100.0
+    },
+    "take_profit_1": {
+      "status": "PARTIAL",
+      "count": 106,
+      "percentage": 36.05
+    },
+    "take_profit_2": {
+      "status": "PARTIAL",
+      "count": 106,
+      "percentage": 36.05
+    },
+    "tp1_distance": {
+      "status": "AVAILABLE",
+      "count": 294,
+      "percentage": 100.0
+    },
+    "tp2_distance": {
+      "status": "AVAILABLE",
+      "count": 294,
+      "percentage": 100.0
+    },
+    "risk_reward_ratio": {
+      "status": "AVAILABLE",
+      "count": 294,
+      "percentage": 100.0
+    },
+    "score": {
+      "status": "MISSING",
+      "count": 0,
+      "percentage": 0.0
+    },
+    "d1_context": {
+      "status": "MISSING",
+      "count": 0,
+      "percentage": 0.0
+    },
+    "h4_context": {
+      "status": "MISSING",
+      "count": 0,
+      "percentage": 0.0
+    },
+    "final_rejection_reason": {
+      "status": "AVAILABLE",
+      "count": 294,
+      "percentage": 100.0
+    },
+    "rejection_stage": {
+      "status": "AVAILABLE",
+      "count": 294,
+      "percentage": 100.0
+    }
+  },
+  "causality_verified": true,
+  "zero_trade_path_verified": true
+}

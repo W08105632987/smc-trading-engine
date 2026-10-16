@@ -1,0 +1,103 @@
+{
+  "diagnostic_run": 1,
+  "audit_timestamp": "2026-10-05T09:30:00Z",
+  "baseline_directory": "runs/probe_oct2025_reference",
+  "analysis_type": "READ-ONLY FORENSIC ANALYSIS OF EXISTING ARTIFACTS",
+  "verification_checklist": {
+    "existing_frozen_artifacts_analyzed": true,
+    "backtest_rerun": false,
+    "strategy_modified": false,
+    "engine_modified": false,
+    "parameters_modified": false,
+    "optimization_performed": false,
+    "phase_b_started": false,
+    "total_active_candidates_evaluated": 294,
+    "approved_trades": 0,
+    "filled_orders": 0,
+    "protected_trades": 0,
+    "closed_trades": 0,
+    "reconciliation_exact": true
+  },
+  "rejection_breakdown": {
+    "STOP_TOO_WIDE": {
+      "count": 126,
+      "percentage": 42.86
+    },
+    "RR_BELOW_MINIMUM": {
+      "count": 72,
+      "percentage": 24.49
+    },
+    "HTF_CONTEXT_INVALID": {
+      "count": 59,
+      "percentage": 20.07
+    },
+    "TP2_NOT_BEYOND_TP1": {
+      "count": 34,
+      "percentage": 11.56
+    },
+    "STOP_BELOW_MINIMUM": {
+      "count": 3,
+      "percentage": 1.02
+    },
+    "SCORE_BELOW_THRESHOLD": {
+      "count": 0,
+      "percentage": 0.0,
+      "note": "Gate never reached"
+    }
+  },
+  "fifteen_questions_answers": {
+    "q01_why_did_all_294_candidates_fail": "100% of candidates failed one of four sequential admission gates: Stop Bounds (129), Blended RR (72), HTF Context (59), or TP2 Geometry (34). Zero candidates survived to trade approval.",
+    "q02_which_gate_was_encountered_most_often": "STOP_TOO_WIDE at Gate 2 was the most frequent observed point of rejection (126 candidates, 42.86%). Combined with STOP_BELOW_MINIMUM (3), the Stop Bounds Gate accounted for 129 rejections (43.88%).",
+    "q03_what_percentage_were_stop_too_wide": "42.86% (126 / 294).",
+    "q04_what_percentage_were_rr_below_minimum": "24.49% (72 / 294).",
+    "q05_what_percentage_were_htf_context_invalid": "20.07% (59 / 294).",
+    "q06_what_percentage_were_tp2_not_beyond_tp1": "11.56% (34 / 294).",
+    "q07_how_close_were_stop_failures_to_3_5_atr": "20 of 126 STOP_TOO_WIDE candidates (15.87%) were near misses within 3.50\u20134.00 ATR (closest was 3.5026 ATR). However, 71.43% (90/126) were materially excessive (> 4.50 ATR, reaching up to 26.89 ATR).",
+    "q08_how_close_were_rr_failures_to_3_8_r": "ZERO near misses. The maximum observed RR was 2.3790R. 100% of RR-rejected candidates had blended RR < 2.50R, representing a massive structural shortfall from 3.8R.",
+    "q09_how_common_was_tp2_failure": "34 candidates (11.56%) failed TP2 geometry. All 34 had TP2 on the wrong side of TP1 (gap < 0). 7 candidates were close near misses within 0.5 price points.",
+    "q10_how_many_candidates_are_objectively_near_misses": "27 candidates total: 20 Stop near misses (3.5\u20134.0 ATR) and 7 TP2 near misses (gap >= -0.5 pts). Zero RR near misses.",
+    "q11_how_many_are_objectively_far_from_qualification": "148 candidates (50.34%): 90 with stop > 4.5 ATR, 72 with RR < 2.5R, and 8 with TP2 inverted by > 5.0 points.",
+    "q12_what_can_we_conclude_about_the_score_gate": "SCORE_BELOW_THRESHOLD = 0 because the score gate was never reached. Every candidate was rejected by an earlier gate in the sequence. No conclusions can be drawn about candidate quality from the score gate.",
+    "q13_what_can_we_conclude_about_htf_rejection": "59 candidates (20.07%) were rejected immediately at Gate 1 due to HTF invalidity. Because D1/H4 sub-flags were not serialized, specific macro/trend conflict causes cannot be determined without a rerun.",
+    "q14_what_information_remains_unavailable": "1. Numerical setup score (0/294). 2. D1 and H4 directional bias sub-flags (0/294). 3. Entry and stop prices for 93 candidates rejected before geometry assignment.",
+    "q15_what_should_be_investigated_next": "1. The 20 Stop near misses (3.5\u20134.0 ATR) to examine if anchor logic or ATR scaling caused the boundary overrun. 2. The structural cause of low RR (<2.4R across all candidates) to understand target placement geometry. 3. HTF logging enhancement in future test runs."
+  },
+  "stop_atr_distribution_stats": {
+    "count": 126,
+    "min": 3.502639788966403,
+    "max": 26.88522283345429,
+    "mean": 6.958206804832157,
+    "median": 5.645889365097652,
+    "std": 3.6182134560375707,
+    "p10": 3.8113023329832725,
+    "p25": 4.306829363742336,
+    "p50": 5.645889365097652,
+    "p75": 8.68581539070095,
+    "p90": 11.939697482121382,
+    "p95": 12.909222213782122,
+    "p99": 16.561410817630637
+  },
+  "rr_distribution_stats": {
+    "count": 72,
+    "min": 0.3197538600580512,
+    "max": 2.3789665735135435,
+    "mean": 0.8583032615467268,
+    "median": 0.7313073940647581,
+    "std": 0.45298660135493213,
+    "p10": 0.38141949567047495,
+    "p25": 0.5032831432297895,
+    "p50": 0.7313073940647581,
+    "p75": 1.1592793203319336,
+    "p90": 1.480465884556911,
+    "p95": 1.7064330680321644,
+    "p99": 1.9850101713356367
+  },
+  "tp2_geometry_summary": {
+    "total_tp2_rejections": 34,
+    "tp2_equal_tp1_count": 0,
+    "tp2_wrong_side_count": 34,
+    "min_inverted_gap_points": -23.527,
+    "max_inverted_gap_points": -0.02,
+    "median_inverted_gap_points": -0.6922
+  }
+}

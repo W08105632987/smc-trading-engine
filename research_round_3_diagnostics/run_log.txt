@@ -1,0 +1,27 @@
+[2026-09-15T06:00:19.357641+00:00] Starting backtest run. CSV=C:\Users\hp\Downloads\xauusd_working\XAUUSD_ticks_2025-09-01_2026-08-31.csv window=(2026-03-01 00:00:00+00:00 -> 2026-03-08 00:00:00+00:00) output_dir=C:\Users\hp\Downloads\smc-trading-engine-milestone1\smc-trading-engine\research_round_3_diagnostics
+[2026-09-15T06:00:19.358641+00:00] ATR-01 LOCKED: period=14, Wilder smoothing (docs/DECISIONS.md)
+[2026-09-15T06:00:19.361261+00:00] initial_equity=10000 (disclosed simplification -- see script docstring)
+[2026-09-15T06:00:19.365983+00:00] Streaming CSV -> ticks -> M1 -> M5/H4 fan-out (single pass, zero-materialization)...
+[2026-09-15T06:02:52.147147+00:00] progress: elapsed=153s  valid_ticks=1,775  skipped_before_window=44,903,938  invalid_rows=0  M5=1  H4=0  replay_steps=0  trades=0  events=0
+[2026-09-15T06:03:07.169785+00:00] progress: elapsed=168s  valid_ticks=993,676  skipped_before_window=44,903,938  invalid_rows=0  M5=545  H4=12  replay_steps=0  trades=0  events=0
+[2026-09-15T06:03:22.184073+00:00] progress: elapsed=183s  valid_ticks=1,930,591  skipped_before_window=44,903,938  invalid_rows=0  M5=1,224  H4=27  replay_steps=0  trades=0  events=0
+[2026-09-15T06:03:23.223480+00:00] Streaming complete. M5=1,272 H4=29 valid_ticks=1,996,624 invalid_rows=0
+[2026-09-15T06:03:23.225229+00:00] Starting ReplayPipeline over the full M5 series...
+[2026-09-15T06:03:37.245242+00:00] progress: elapsed=198s  replay_steps=274  trades=0  events=333
+[2026-09-15T06:03:52.291409+00:00] progress: elapsed=213s  replay_steps=336  trades=0  events=518
+[2026-09-15T06:04:07.410133+00:00] progress: elapsed=228s  replay_steps=418  trades=0  events=744
+[2026-09-15T06:04:22.520713+00:00] progress: elapsed=243s  replay_steps=512  trades=0  events=1,036
+[2026-09-15T06:04:37.519242+00:00] progress: elapsed=258s  replay_steps=593  trades=0  events=1,285
+[2026-09-15T06:04:52.565090+00:00] progress: elapsed=273s  replay_steps=676  trades=0  events=1,672
+[2026-09-15T06:05:08.070112+00:00] progress: elapsed=289s  replay_steps=740  trades=0  events=1,980
+[2026-09-15T06:05:23.085599+00:00] progress: elapsed=304s  replay_steps=811  trades=0  events=2,293
+[2026-09-15T06:05:38.116783+00:00] progress: elapsed=319s  replay_steps=875  trades=0  events=2,622
+[2026-09-15T06:05:54.193437+00:00] progress: elapsed=335s  replay_steps=931  trades=0  events=3,044
+[2026-09-15T06:06:09.292581+00:00] progress: elapsed=350s  replay_steps=1,005  trades=0  events=3,311
+[2026-09-15T06:06:24.327184+00:00] progress: elapsed=365s  replay_steps=1,072  trades=0  events=3,439
+[2026-09-15T06:06:39.469130+00:00] progress: elapsed=380s  replay_steps=1,135  trades=0  events=3,575
+[2026-09-15T06:06:54.501267+00:00] progress: elapsed=395s  replay_steps=1,200  trades=0  events=3,812
+[2026-09-15T06:07:09.642557+00:00] progress: elapsed=410s  replay_steps=1,258  trades=0  events=4,080
+[2026-09-15T06:07:14.872932+00:00] Replay complete.
+[2026-09-15T06:07:14.881053+00:00] DONE in 415s. trades=0 events=4,122 M5=1,272 H4=29
+[2026-09-15T06:07:14.889237+00:00] Outputs: research_round_3_diagnostics\trades.jsonl, research_round_3_diagnostics\events.jsonl, research_round_3_diagnostics\statistics_final.json

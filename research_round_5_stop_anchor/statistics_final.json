@@ -1,0 +1,17 @@
+{
+  "total_trades": 0,
+  "closed_trades": 0,
+  "open_trades": 0,
+  "winning_trades": 0,
+  "losing_trades": 0,
+  "win_rate": "0",
+  "average_win_r": null,
+  "average_loss_r": null,
+  "expectancy_r": "0",
+  "profit_factor": null,
+  "max_drawdown_r": "0",
+  "longest_winning_streak": 0,
+  "longest_losing_streak": 0,
+  "exit_reason_counts": {},
+  "net_r": "0"
+}

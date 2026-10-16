@@ -1,0 +1,21 @@
+bucket,count,percentage,cumulative_count,cumulative_percentage,is_near_miss_band,notes
+< 2.0R,71,98.61,71,98.61,NO,Far below threshold
+2.0 - 2.5R,1,1.39,72,100.0,NO,Far below threshold
+2.5 - 3.0R,0,0.0,72,100.0,NO,Near-miss band (0 found!)
+3.0 - 3.5R,0,0.0,72,100.0,YES,Near-miss band (0 found!)
+3.5 - 3.8R,0,0.0,72,100.0,YES,Near-miss band (0 found!)
+>= 3.8R,0,0.0,72,100.0,NO,Near-miss band (0 found!)
+--- SUMMARY STATS ---,,,,,,
+STAT_COUNT,72,,,,,
+STAT_MIN,0.3198,,,,,
+STAT_MAX,2.3790,,,,,
+STAT_MEAN,0.8583,,,,,
+STAT_MEDIAN,0.7313,,,,,
+STAT_STD,0.4530,,,,,
+STAT_P10,0.3814,,,,,
+STAT_P25,0.5033,,,,,
+STAT_P50,0.7313,,,,,
+STAT_P75,1.1593,,,,,
+STAT_P90,1.4805,,,,,
+STAT_P95,1.7064,,,,,
+STAT_P99,1.9850,,,,,

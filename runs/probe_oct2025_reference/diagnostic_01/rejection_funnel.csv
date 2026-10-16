@@ -1,0 +1,9 @@
+stage_number,stage_name,candidates_entering,candidates_rejected,rejection_reason_code,candidates_passing,pass_rate_pct,stage_notes
+1,Active October Candidates Evaluated,294,0,NONE,294,100.0,Total confirmed setups evaluated in active trading period (post-warmup)
+2,HTF Context Gate,294,59,HTF_CONTEXT_INVALID,235,79.93,D1/H4 market structure / alignment validation
+3,Stop Bounds Gate (ATR & Minimum),235,129,STOP_TOO_WIDE (126) + STOP_BELOW_MINIMUM (3),106,45.11,Enforces 0.25 <= stop_distance_atr <= 3.5
+4,TP2 Geometry Gate,106,34,TP2_NOT_BEYOND_TP1,72,67.92,Strict validation that TP2 extends strictly beyond TP1
+5,Blended Risk-Reward Gate,72,72,RR_BELOW_MINIMUM,0,0.0,Enforces blended_rr >= 3.8R (100% of surviving candidates failed here)
+6,Score Gate,0,0,SCORE_BELOW_THRESHOLD,0,0.0,NEVER REACHED: 0 candidates survived earlier gates
+7,Risk & Account Limits Gate,0,0,RISK_LIMITS,0,0.0,NEVER REACHED
+8,Approved Trades,0,0,NONE,0,0.0,Zero trades approved; zero orders generated; zero executions

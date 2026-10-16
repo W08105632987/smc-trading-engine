@@ -1,0 +1,22 @@
+bucket,count,percentage,cumulative_count,cumulative_percentage,is_near_miss_band,notes
+<= 3.50 ATR,0,0.0,0,0.0,NO,Near-miss band
+3.50 - 3.60 ATR,5,3.97,5,3.97,YES,Near-miss band
+3.60 - 3.75 ATR,5,3.97,10,7.94,YES,Near-miss band
+3.75 - 4.00 ATR,10,7.94,20,15.87,YES,Near-miss band
+4.00 - 4.50 ATR,15,11.9,35,27.78,NO,Materially excessive stop
+4.50 - 5.00 ATR,12,9.52,47,37.3,NO,Materially excessive stop
+> 5.00 ATR,79,62.7,126,100.0,NO,Materially excessive stop
+--- SUMMARY STATS ---,,,,,,
+STAT_COUNT,126,,,,,
+STAT_MIN,3.5026,,,,,
+STAT_MAX,26.8852,,,,,
+STAT_MEAN,6.9582,,,,,
+STAT_MEDIAN,5.6459,,,,,
+STAT_STD,3.6182,,,,,
+STAT_P10,3.8113,,,,,
+STAT_P25,4.3068,,,,,
+STAT_P50,5.6459,,,,,
+STAT_P75,8.6858,,,,,
+STAT_P90,11.9397,,,,,
+STAT_P95,12.9092,,,,,
+STAT_P99,16.5614,,,,,

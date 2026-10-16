@@ -1,0 +1,517 @@
+diff -ru '--exclude=__pycache__' '--exclude=.pytest_cache' smc-trading-engine-milestone1/smc-trading-engine/backtest/pipeline.py /home/claude/final/smc-trading-engine-milestone1/smc-trading-engine/backtest/pipeline.py
+--- smc-trading-engine-milestone1/smc-trading-engine/backtest/pipeline.py	2026-10-01 01:51:36.000000000 +0000
++++ /home/claude/final/smc-trading-engine-milestone1/smc-trading-engine/backtest/pipeline.py	2026-10-03 05:30:59.201501062 +0000
+@@ -118,6 +118,7 @@
+ 
+ from __future__ import annotations
+ 
++import bisect
+ from dataclasses import dataclass, field
+ from datetime import datetime, timedelta
+ from decimal import Decimal
+@@ -169,6 +170,22 @@
+ from strategy.zones.zone_engine import ZoneEngineImpl
+ 
+ 
++# TRAIL-01 (docs/DECISIONS.md): candle-count margin before a position's
++# entry within which a major swing is still eligible for trailing-stop
++# consideration. See the bugfix comment at its use site in
++# _manage_open_position for the full rationale -- this bounds
++# compute_new_stop's swing scan away from the full replay-to-date
++# history (which produced economically meaningless stops from
++# unrelated, much-earlier price regimes) while still covering
++# legitimate structure immediately around entry. Mirrors the existing
++# median_lookback=20 precedent in market_data/replay/incremental_m5_layer.py.
++# The actual correctness guarantee is the invariant inside
++# TrailingEngineImpl.compute_new_stop itself; this window is a
++# secondary, performance-motivated bound (avoids rescanning the entire
++# replay-to-date history on every POST_TP1 step).
++TRAILING_SWING_LOOKBACK_MARGIN = 20
++
++
+ # --------------------------------------------------------------------
+ # ReplayState — EXACT fields per MILESTONE_9_HANDOFF.md §C.3.
+ # --------------------------------------------------------------------
+@@ -946,8 +963,23 @@
+             current_atr_map = self._atr_provider(Timeframe.M5, m5_candles)
+             current_atr = current_atr_map.get(current_candle.candle_id)
+             if current_atr is not None:
++                # TRAIL-01 (docs/DECISIONS.md): bound the swing-detection
++                # window to recent candles rather than the full replay-to-
++                # date history. See TRAILING_SWING_LOOKBACK_MARGIN's
++                # docstring above for the full rationale. The correctness
++                # guarantee itself lives inside compute_new_stop (it rejects
++                # any candidate the live candle would already breach,
++                # regardless of what window it's given); this bound is a
++                # secondary measure that also removes a full-history
++                # rescan cost on every POST_TP1 step.
++                entry_idx = bisect.bisect_left(
++                    m5_candles, position.opened_at, key=lambda c: c.timestamp_close
++                )
++                window_start = max(0, entry_idx - TRAILING_SWING_LOOKBACK_MARGIN)
++                candles_for_trailing = m5_candles[window_start:]
+                 new_sl = self._trailing_engine.compute_new_stop(
+-                    position.direction, self.state.trailing_current_sl, m5_candles, current_atr_map, current_atr,
++                    position.direction, self.state.trailing_current_sl,
++                    candles_for_trailing, current_atr_map, current_atr,
+                 )
+                 if new_sl is not None:
+                     if position.direction == Direction.BULLISH:
+diff -ru '--exclude=__pycache__' '--exclude=.pytest_cache' smc-trading-engine-milestone1/smc-trading-engine/backtest/statistics.py /home/claude/final/smc-trading-engine-milestone1/smc-trading-engine/backtest/statistics.py
+--- smc-trading-engine-milestone1/smc-trading-engine/backtest/statistics.py	2026-09-30 08:23:24.000000000 +0000
++++ /home/claude/final/smc-trading-engine-milestone1/smc-trading-engine/backtest/statistics.py	2026-10-03 05:38:35.638495631 +0000
+@@ -117,6 +117,68 @@
+ 
+ 
+ @dataclass(frozen=True)
++class PlausibilityWarning:
++    """One flagged trade from check_plausibility. Advisory only -- this
++    never mutates or excludes a trade, it only surfaces something that
++    should be looked at by a human before the run's headline statistics
++    are trusted."""
++    trade_id: str
++    reason: str
++    realized_r: Optional[Decimal]
++    entry_timestamp: object
++    exit_timestamp: object
++    exit_reason: str
++
++
++def check_plausibility(
++    trades: Sequence[TradeRecord],
++    max_abs_r: Decimal = Decimal("20"),
++) -> list[PlausibilityWarning]:
++    """TRAIL-01 (docs/DECISIONS.md) standing plausibility guard.
++
++    Found via walk_forward_6m_v3: 11 of 61 trades closed with realized_r
++    up to 614, all via a trailing-stop bug that has since been fixed at
++    its root (strategy/trailing/trailing_engine.py). That fix makes the
++    specific mechanism behind THIS incident impossible going forward, but
++    this project has now hit three separate bugs that each hid behind
++    numbers that looked fine or impressive at a glance (the lockout bug,
++    the O(n^2) speed bug, and this one). This check exists so the next
++    one -- whatever its cause turns out to be -- gets caught automatically
++    rather than requiring another round of manual trade-by-trade
++    inspection to notice.
++
++    This does NOT replace the fix above; TRAIL-01's invariant is what
++    actually prevents the bug. This is a second, independent layer: if
++    some future, different bug produces another implausible trade by any
++    other mechanism, this still catches it. Advisory only -- it flags,
++    it never silently excludes a trade from the real statistics.
++
++    max_abs_r is deliberately a simple, single, well-justified bound: a
++    genuinely good trailing-stop exit capturing a large trend move can
++    legitimately produce a double-digit R outcome, so this is not set
++    aggressively tight. 20R was chosen because it comfortably clears
++    every trade in the walk_forward_6m_v3 run EXCEPT the 11 now-explained
++    bugged ones (the next-highest genuine trade was under 21R before the
++    fix) -- it is a real, evidence-based line, not an arbitrary round
++    number.
++    """
++    warnings: list[PlausibilityWarning] = []
++    for t in trades:
++        if t.realized_r is None:
++            continue
++        if abs(t.realized_r) > max_abs_r:
++            warnings.append(PlausibilityWarning(
++                trade_id=t.trade_id,
++                reason=f"realized_r={t.realized_r} exceeds plausibility ceiling of {max_abs_r}R",
++                realized_r=t.realized_r,
++                entry_timestamp=t.entry_timestamp,
++                exit_timestamp=t.exit_timestamp,
++                exit_reason=t.exit_reason,
++            ))
++    return warnings
++
++
++@dataclass(frozen=True)
+ class RobustnessMetric:
+     excluded_top_n: int
+     excluded_r_values: tuple[Decimal, ...]
+diff -ru '--exclude=__pycache__' '--exclude=.pytest_cache' smc-trading-engine-milestone1/smc-trading-engine/core/config/registry.py /home/claude/final/smc-trading-engine-milestone1/smc-trading-engine/core/config/registry.py
+--- smc-trading-engine-milestone1/smc-trading-engine/core/config/registry.py	2026-09-18 07:30:44.000000000 +0000
++++ /home/claude/final/smc-trading-engine-milestone1/smc-trading-engine/core/config/registry.py	2026-10-03 05:33:29.240201979 +0000
+@@ -179,17 +179,29 @@
+     Prevents the blended R:R gate from always failing because TP1 is trivially
+     close. 1.0x ATR ≈ 8 pts on XAUUSD M5 — still reachable, not a big target."""
+     minimum_rr: Parameter[Decimal] = Parameter(
+-        value=Decimal("2.0"), unit="ratio", status=ParameterStatus.PROVISIONAL,
+-        source_version="phase2-v1", phase3_testable=True,
++        value=Decimal("3.8"), unit="ratio", status=ParameterStatus.PROVISIONAL,
++        source_version="RR-02", phase3_testable=True,
+     )
+     """Blended R:R gate (RR-01 LOCKED algorithm, value PROVISIONAL).
+-    Lowered from 2.0 to 1.5 — diagnostic runs showed that even with structurally
+-    valid setups on M5 XAUUSD a blended 2.0 is very hard to satisfy simultaneously
+-    with the structural stop anchor. 1.5 is still a strong professional threshold;
+-    Phase 3 ablation should evaluate 1.5 vs 2.0 vs 1.8 with actual trade samples."""
+-    """NOTE: previous value was 2.0 — change recorded here per DECISIONS.md protocol.
+-    This does NOT change what is measured (blended TP1/TP2 weighted by tp1_allocation_pct)
+-    only the threshold itself, which the DECISIONS.md explicitly marks PROVISIONAL."""
++    RR-02 (docs/DECISIONS.md): raised from 2.0 to 3.8, the first deliberate
++    tuning pass following walk_forward_6m_v3, done AFTER both TRAIL-01 bugs
++    (confirmation-engine regression, stale-swing trailing stop) were fixed,
++    so this is tuning against a run no longer corrupted by either. Clean
++    baseline before this change: 35 trades/6mo, 42.9% win rate, expectancy
++    +0.95R, profit factor 2.72. Target reward floor is 3.8; 3.5 is the
++    agreed fallback if 3.8 leaves too few trades (~15-20) to be
++    statistically meaningful over a 6-month window — re-run and compare
++    trade count before accepting 3.8 as final. Expect fewer trades, a
++    higher average win size, and likely a lower win rate (high-RR setups
++    are structurally harder to reach before a stop triggers) — a
++    deliberate quality-over-volume tradeoff, not a free improvement."""
++    """HISTORY — phase2-v1 note, superseded by RR-02 above, kept per
++    DECISIONS.md protocol (history is useful, not deleted). Lowered from
++    2.0 to 1.5 — diagnostic runs showed that even with structurally valid
++    setups on M5 XAUUSD a blended 2.0 is very hard to satisfy simultaneously
++    with the structural stop anchor. NOTE: the code's actual value was
++    never changed to 1.5 — it remained 2.0 until RR-02 above; this
++    discrepancy is kept visible rather than silently erased."""
+ 
+     tp1_allocation_pct: Parameter[Decimal] = Parameter(
+         value=Decimal("30"), unit="%", status=ParameterStatus.PROVISIONAL,
+diff -ru '--exclude=__pycache__' '--exclude=.pytest_cache' smc-trading-engine-milestone1/smc-trading-engine/docs/DECISIONS.md /home/claude/final/smc-trading-engine-milestone1/smc-trading-engine/docs/DECISIONS.md
+--- smc-trading-engine-milestone1/smc-trading-engine/docs/DECISIONS.md	2026-09-18 10:13:14.000000000 +0000
++++ /home/claude/final/smc-trading-engine-milestone1/smc-trading-engine/docs/DECISIONS.md	2026-10-03 05:34:04.747382613 +0000
+@@ -327,3 +327,120 @@
+ calculation. `TradeRecord` gains optional `position_size`, `dollar_risk`,
+ `gross_pnl`, `commission`, `net_pnl` fields (all default `None`).
+ Backward compatible — existing FRICTIONLESS records unaffected.
++
++---
++
++## TRAIL-01 — Trailing-stop stale-swing bug (walk_forward_6m_v3)
++
++**STATUS: FIXED, verified by direct reproduction + regression tests**
++
++**Context:** The `walk_forward_6m_v3` run (6-month walk-forward,
++2025-09-01 to 2026-02-28, 61 closed trades) reported a profit factor of
++88.73 and net +2487.9R. Manual inspection of individual trades (sorted
++by `realized_r`) found 11 of 61 trades with economically impossible
++price moves — e.g. a 9.9% XAUUSD move in 15 minutes, an 18.6% move in
++20 minutes — all 11 exiting exclusively via `TRAILING_STOP_HIT`.
++
++**Root cause:** `TrailingEngineImpl.compute_new_stop`
++(`strategy/trailing/trailing_engine.py`) scans whatever candle sequence
++it is given for confirmed MAJOR swings, with no check that a candidate
++swing's price was still consistent with current market price.
++`backtest/pipeline.py`'s `_manage_open_position` passed the FULL
++replay-to-date candle history on every `POST_TP1` step. In a multi-month
++replay this let a chronologically-earlier major swing — from a wholly
++unrelated, much-earlier price regime (e.g. before a later pullback) —
++surface as "more protective" purely because its raw price exceeded
++`current_sl`, with nothing checking whether that price was already
++behind live market action at all. That stale candidate could then be
++returned as the new trailing stop even though it sat ABOVE current
++market price, which the very next candle trivially breached, producing
++an immediate, meaningless `TRAILING_STOP_HIT` at the stale level.
++Confirmed by direct reproduction (`tests/test_trailing_stale_swing_regression.py`):
++a synthetic scenario with an early, high-priced major swing followed by
++a large pullback and recovery reliably produced a computed stop ABOVE
++live price.
++
++**Fix:** Two layers, deliberately redundant:
++
++1. **The actual correctness guarantee**, inside
++   `TrailingEngineImpl.compute_new_stop` itself: a candidate is now
++   rejected outright if the current (most recent) candle in the
++   supplied sequence would already breach it (for BULLISH:
++   `candidate >= current_candle.low`; for BEARISH:
++   `candidate <= current_candle.high`). This holds regardless of what
++   candle window a caller passes in, and regardless of *why* a bad
++   candidate arose — it is a direct plausibility invariant at the
++   source, not a workaround for this one cause.
++2. **A secondary, performance-motivated bound**, in
++   `backtest/pipeline.py`'s `_manage_open_position`
++   (`TRAILING_SWING_LOOKBACK_MARGIN = 20`): the candle window passed to
++   `compute_new_stop` is now bounded to ~20 candles before the
++   position's entry onward, rather than the full replay-to-date
++   history. This also removes a real O(full-history) rescan cost paid
++   on every `POST_TP1` step for long runs — a genuine, separate
++   performance issue the PERF-05 through PERF-10 optimizations (see
++   prior entries) did not touch.
++
++**Verification:** Full test suite green (501 passed, up from 499 —
++2 new tests added). `tests/test_trailing_stale_swing_regression.py`
++covers both directions: (a) the invariant holds across zero, small, and
++large amounts of intervening history (0 / 20 / 500 / 5,000 / 20,000
++filler candles), and (b) the fix does not reject a genuinely legitimate
++trailing candidate — reusing `test_backtest_pipeline.py`'s own
++hand-verified `TestReplayPipelineHappyPath` fixture, which must still
++produce its expected `2409.900` trailing stop unchanged.
++
++**Explicit non-claim:** This fixes the mechanism that produced
++`walk_forward_6m_v3`'s 11 impossible-R trades. It does NOT mean every
++number in that run's `statistics_final.json` was otherwise trustworthy
++— that run also predates the `RR-02` tuning change below, so it should
++not be treated as a current baseline. A clean re-run on the fixed code
++is required before trusting any trade-count or expectancy figure from
++this strategy going forward.
++
++**Not touched:** Setup detection, confirmation, HTF regime gating (the
++latter was independently checked this session via direct exhaustive
++unit test across all 8 regime/direction combinations and found to have
++no leak — a prior session's manual event-log cross-reference had
++incorrectly suggested one; that finding is retracted here for the
++record), scoring, risk sizing, execution/fill logic, SL/TP1/TP2 exit
++logic (only the trailing-stop-specific swing selection was affected).
++
++---
++
++## RR-02 — minimum_rr raised from 2.0 to 3.8 (first tuning pass)
++
++**STATUS: PROVISIONAL — first deliberate tuning pass, not yet validated
++against a clean re-run**
++
++**Context:** Following TRAIL-01's fix, a clean re-read of
++`walk_forward_6m_v3`'s trades with both known bugs' effects manually
++excluded gave a baseline of 35 trades/6mo, 42.9% win rate, expectancy
+++0.95R, profit factor 2.72 — a real, modest, believable edge, with
++every strategy parameter (including `minimum_rr`) still at its original
++PROVISIONAL, never-tuned value. This is the first deliberate tuning
++decision made against that baseline understanding.
++
++**Decision:** Raise `minimum_rr` (RR-01's LOCKED blended TP1/TP2
++algorithm, value only) from 2.0 to 3.8, with 3.5 as an explicitly
++agreed fallback if 3.8 leaves too few trades over a 6-month window to
++be statistically meaningful (rough floor: ~15-20 clean trades).
++
++**Expected tradeoff (stated in advance, per this project's own
++discipline of not retroactively excusing a result after seeing it):**
++fewer total trades, a higher average win size, and likely a LOWER win
++rate — high-RR setups are structurally harder to close as winners
++before a stop triggers. This is a deliberate quality-over-volume
++choice, not a free improvement. If the resulting numbers don't bear
++this out as expected, that itself is worth investigating rather than
++dismissing.
++
++**Required next step before this is anything more than provisional:**
++a fresh `walk_forward_6m` run on the TRAIL-01-fixed code, confirming
++both plausibility checks introduced in TRAIL-01 pass clean, before any
++headline statistic from it is trusted or reported.
++
++**Not touched:** `max_stop_atr`, `minimum_stop_atr`, `min_target_atr`,
++`tp1_allocation_pct`, `minimum_score`, the RR-01 blended-measurement
++algorithm itself (only its threshold changed), HTF context gate, risk
++engine, position sizing.
+diff -ru '--exclude=__pycache__' '--exclude=.pytest_cache' smc-trading-engine-milestone1/smc-trading-engine/scripts/run_backtest.py /home/claude/final/smc-trading-engine-milestone1/smc-trading-engine/scripts/run_backtest.py
+--- smc-trading-engine-milestone1/smc-trading-engine/scripts/run_backtest.py	2026-10-01 00:35:50.000000000 +0000
++++ /home/claude/final/smc-trading-engine-milestone1/smc-trading-engine/scripts/run_backtest.py	2026-10-03 05:38:49.401215350 +0000
+@@ -87,7 +87,7 @@
+ 
+ from backtest.execution_adapter import BacktestExecutionAdapter
+ from backtest.pipeline import ReplayPipeline, RunConfig
+-from backtest.statistics import compute_outlier_robustness, compute_statistics
++from backtest.statistics import check_plausibility, compute_outlier_robustness, compute_statistics
+ from backtest.trade_log import TradeRecord
+ from core.config.registry import EngineConfig
+ from core.domain.common import Timeframe
+@@ -441,6 +441,7 @@
+         trades_file.close()
+         events_file.close()
+ 
++    plausibility_warnings = []
+     if pipeline is not None:
+         final_stats = compute_statistics(pipeline.state.completed_trades)
+         with open(out_dir / "statistics_final.json", "w", encoding="utf-8") as f:
+@@ -450,10 +451,35 @@
+         with open(out_dir / "statistics_robustness.json", "w", encoding="utf-8") as f:
+             json.dump({k: dataclasses.asdict(v) for k, v in robustness_stats.items()}, f, default=_json_default, indent=2)
+ 
++        # TRAIL-01 (docs/DECISIONS.md) standing plausibility guard: runs on
++        # EVERY backtest automatically, not just ones a human remembers to
++        # manually eyeball. Written to its own file so it's impossible to
++        # miss, and also logged loudly to the console/run_log -- a run with
++        # flagged trades should not have its statistics_final.json numbers
++        # trusted or reported until each flagged trade is investigated.
++        plausibility_warnings = check_plausibility(pipeline.state.completed_trades)
++        with open(out_dir / "plausibility_report.json", "w", encoding="utf-8") as f:
++            json.dump(
++                {
++                    "flagged_trade_count": len(plausibility_warnings),
++                    "warnings": [dataclasses.asdict(w) for w in plausibility_warnings],
++                },
++                f, default=_json_default, indent=2,
++            )
++        if plausibility_warnings:
++            log(f"*** PLAUSIBILITY GUARD: {len(plausibility_warnings)} trade(s) flagged -- "
++                f"see {out_dir / 'plausibility_report.json'}. DO NOT report this run's "
++                f"statistics as trustworthy until each flagged trade is investigated. ***")
++            for w in plausibility_warnings:
++                log(f"  FLAGGED: trade_id={w.trade_id} reason={w.reason}")
++        else:
++            log("Plausibility guard: no flagged trades.")
++
+     elapsed_total = time.perf_counter() - t_start
+     log(f"DONE in {elapsed_total:.0f}s. trades={completed_trade_count:,} events={total_events:,} "
+         f"M5={m5_count:,} H4={h4_count:,}")
+-    log(f"Outputs: {trades_path}, {events_path}, {out_dir / 'statistics_final.json'}, {out_dir / 'statistics_robustness.json'}")
++    log(f"Outputs: {trades_path}, {events_path}, {out_dir / 'statistics_final.json'}, "
++        f"{out_dir / 'statistics_robustness.json'}, {out_dir / 'plausibility_report.json'}")
+     return 0
+ 
+ 
+diff -ru '--exclude=__pycache__' '--exclude=.pytest_cache' smc-trading-engine-milestone1/smc-trading-engine/strategy/trailing/trailing_engine.py /home/claude/final/smc-trading-engine-milestone1/smc-trading-engine/strategy/trailing/trailing_engine.py
+--- smc-trading-engine-milestone1/smc-trading-engine/strategy/trailing/trailing_engine.py	2026-08-14 21:48:34.000000000 +0000
++++ /home/claude/final/smc-trading-engine-milestone1/smc-trading-engine/strategy/trailing/trailing_engine.py	2026-10-03 05:31:09.688168408 +0000
+@@ -48,14 +48,33 @@
+         buffer = current_atr * self._buffer_mult
+         candidates: list[Decimal] = []
+ 
++        # TRAIL-01 (docs/DECISIONS.md) plausibility invariant: a candidate
++        # must never be positioned such that the CURRENT (most recent
++        # supplied) candle would already breach it. A genuinely protective
++        # stop, by definition, sits behind live price -- it cannot already
++        # be past the current candle's own range. A candidate that fails
++        # this is not a real forward trailing update; it's a symptom of
++        # something upstream (e.g. a swing detected from a stale or
++        # economically-irrelevant part of the supplied candle history --
++        # see the walk_forward_6m_v3 incident this decision documents,
++        # where 11 trades closed with impossible R-multiples up to 614R,
++        # all via a trailing stop computed this way) producing a level
++        # that doesn't reflect where price actually is right now.
++        # Filtering here, at the source, means no caller can ever apply a
++        # broken stop regardless of what candle window it passes in.
++        current_candle = candles[-1] if candles else None
++
+         if direction == Direction.BULLISH:
+             # Protective reference = confirmed major swing LOWS.
+             for s in confirmed_major:
+                 if s.type != SwingType.LOW:
+                     continue
+                 candidate = s.price - buffer
+-                if candidate > current_sl:  # monotonic: only tightening candidates
+-                    candidates.append(candidate)
++                if candidate <= current_sl:  # monotonic: only tightening candidates
++                    continue
++                if current_candle is not None and candidate >= current_candle.low:
++                    continue  # would already be breached by live price -- not real
++                candidates.append(candidate)
+             if not candidates:
+                 return None
+             return max(candidates)  # most protective for a long = the HIGHEST qualifying candidate
+@@ -64,8 +83,11 @@
+                 if s.type != SwingType.HIGH:
+                     continue
+                 candidate = s.price + buffer
+-                if candidate < current_sl:
+-                    candidates.append(candidate)
++                if candidate >= current_sl:
++                    continue
++                if current_candle is not None and candidate <= current_candle.high:
++                    continue  # would already be breached by live price -- not real
++                candidates.append(candidate)
+             if not candidates:
+                 return None
+             return min(candidates)  # most protective for a short = the LOWEST qualifying candidate
+diff -ru '--exclude=__pycache__' '--exclude=.pytest_cache' smc-trading-engine-milestone1/smc-trading-engine/tests/test_backtest_pipeline.py /home/claude/final/smc-trading-engine-milestone1/smc-trading-engine/tests/test_backtest_pipeline.py
+--- smc-trading-engine-milestone1/smc-trading-engine/tests/test_backtest_pipeline.py	2026-09-18 05:22:22.000000000 +0000
++++ /home/claude/final/smc-trading-engine-milestone1/smc-trading-engine/tests/test_backtest_pipeline.py	2026-10-03 05:35:42.852277032 +0000
+@@ -475,10 +475,16 @@
+         )
+ 
+     def _build_candles(self):
+-        # Day 1: sparse candles spanning the whole day, peak 2445 (PDH) --
+-        # a real, correctly-classified EXTERNAL target above entry.
++        # Day 1: sparse candles spanning the whole day, peak 2470 (PDH) --
++        # a real, correctly-classified EXTERNAL target above entry. Raised
++        # from 2445 (RR-02, docs/DECISIONS.md): minimum_rr rose from 2.0 to
++        # 3.8, and this fixture's blended RR at 2445 (~3.40) no longer
++        # cleared the new gate -- this test is about verifying real
++        # pool-derived target WIRING, not about pinning a specific RR
++        # value, so the fixture's target distance was widened rather than
++        # the gate threshold weakened for this test.
+         day1 = [self._c(i, 2400, 2399, 2400) for i in range(0, 288, 12)]
+-        day1[0] = self._c(0, 2445.0, 2399.0, 2405.0)
++        day1[0] = self._c(0, 2470.0, 2399.0, 2405.0)
+ 
+         base = 288
+         day2 = [
+@@ -527,8 +533,9 @@
+         assert position.stop_loss == Decimal("2414")
+         # TP1 = nearest INTERNAL (equal-high pool, average of 2437.00/2437.02)
+         assert position.take_profit_1 == Decimal("2437.01")
+-        # TP2 = nearest EXTERNAL (PDH at 2445 -- the only external candidate above entry)
+-        assert position.take_profit_2 == Decimal("2445")
++        # TP2 = nearest EXTERNAL (PDH at 2470 -- the only external candidate above
++        # entry; raised from 2445 by RR-02, see _build_candles' comment)
++        assert position.take_profit_2 == Decimal("2470.0")
+ 
+ 
+ class TestDiagnosticLoggingDoesNotAffectDecisions:
+diff -ru '--exclude=__pycache__' '--exclude=.pytest_cache' smc-trading-engine-milestone1/smc-trading-engine/tests/test_backtest_statistics.py /home/claude/final/smc-trading-engine-milestone1/smc-trading-engine/tests/test_backtest_statistics.py
+--- smc-trading-engine-milestone1/smc-trading-engine/tests/test_backtest_statistics.py	2026-09-30 08:23:38.000000000 +0000
++++ /home/claude/final/smc-trading-engine-milestone1/smc-trading-engine/tests/test_backtest_statistics.py	2026-10-03 11:30:45.671991230 +0000
+@@ -2,7 +2,7 @@
+ from decimal import Decimal
+ 
+ from core.domain.common import Direction
+-from backtest.statistics import compute_outlier_robustness, compute_statistics
++from backtest.statistics import check_plausibility, compute_outlier_robustness, compute_statistics
+ from backtest.trade_log import TradeRecord
+ 
+ 
+@@ -108,3 +108,45 @@
+     assert top_2.winning_trades == 1  # 2
+     assert top_2.losing_trades == 2   # -1, -1
+     assert top_2.net_r == Decimal("0")  # 2 - 1 - 1 = 0
++
++
++class TestPlausibilityGuard:
++    """TRAIL-01 (docs/DECISIONS.md): standing guard added after
++    walk_forward_6m_v3 produced 11 trades with realized_r up to 614,
++    all from a since-fixed trailing-stop bug. This check is an
++    independent second layer -- it must flag an implausible trade
++    regardless of what future mechanism might produce one, and must
++    never flag a normal, legitimate trade."""
++
++    def test_flags_trade_above_default_ceiling(self):
++        trades = [_trade(0, 2), _trade(1, -1), _trade(2, 614)]
++        warnings = check_plausibility(trades)
++        assert len(warnings) == 1
++        assert warnings[0].trade_id == "t2"
++        assert warnings[0].realized_r == Decimal("614")
++        assert "614" in warnings[0].reason
++
++    def test_does_not_flag_normal_trades(self):
++        rs = [2, -1, -1, 3, -2, 5.24, -1, 14.8, 8.4]
++        trades = [_trade(i, r) for i, r in enumerate(rs)]
++        assert check_plausibility(trades) == []
++
++    def test_does_not_flag_open_trades(self):
++        trades = [_trade(0, None, closed=False)]
++        assert check_plausibility(trades) == []
++
++    def test_respects_custom_ceiling(self):
++        trades = [_trade(0, 15)]
++        assert check_plausibility(trades, max_abs_r=Decimal("20")) == []
++        assert len(check_plausibility(trades, max_abs_r=Decimal("10"))) == 1
++
++    def test_flags_large_negative_r_too(self):
++        # realized_r should never be more negative than -1 under normal
++        # SL-capped risk, but the guard checks magnitude in both
++        # directions deliberately -- it should never assume losses are
++        # safe just because wins are the historically-observed failure
++        # mode.
++        trades = [_trade(0, -25)]
++        warnings = check_plausibility(trades)
++        assert len(warnings) == 1
++        assert warnings[0].realized_r == Decimal("-25")
+diff -ru '--exclude=__pycache__' '--exclude=.pytest_cache' smc-trading-engine-milestone1/smc-trading-engine/tests/test_config.py /home/claude/final/smc-trading-engine-milestone1/smc-trading-engine/tests/test_config.py
+--- smc-trading-engine-milestone1/smc-trading-engine/tests/test_config.py	2026-08-10 05:35:12.000000000 +0000
++++ /home/claude/final/smc-trading-engine-milestone1/smc-trading-engine/tests/test_config.py	2026-10-03 05:34:45.743466166 +0000
+@@ -19,7 +19,11 @@
+     def test_frozen_defaults_match_strategy_spec(self):
+         cfg = StrategyConfig()
+         assert cfg.minimum_score.value == 70
+-        assert cfg.minimum_rr.value == Decimal("2.0")
++        # RR-02 (docs/DECISIONS.md): deliberately raised from 2.0 to 3.8 as
++        # the first tuning pass following the TRAIL-01 bugfix. This is an
++        # intentional PROVISIONAL value change, not drift -- update this
++        # assertion again if RR-02 is superseded by a later decision.
++        assert cfg.minimum_rr.value == Decimal("3.8")
+         assert cfg.max_pending_setups.value == 3
+         assert cfg.tp1_allocation_pct.value == Decimal("30")
+ 
+Only in /home/claude/final/smc-trading-engine-milestone1/smc-trading-engine/tests: test_trailing_stale_swing_regression.py

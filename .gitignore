@@ -1,0 +1,61 @@
+﻿# ─── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ─── Virtual environments ─────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ─── Pytest / coverage ────────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ─── IDE / OS ─────────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ─── Raw tick data (6.5 GB external dataset, never commit) ────────────────────
+XAUUSD_ticks_*.csv
+
+# ─── Large backtest run artifacts ────────────────────────────────────────────
+# Large files excluded from ALL run directories (kept locally):
+runs/*/events.jsonl
+runs/*/candidates.jsonl
+runs/*/run_log.txt
+
+# Exclude entire non-evidence run directories:
+runs/probe_oct2025_E0_prefix/
+runs/cent_account_30usd_validation/
+runs/validation_2025_09/
+runs/validation_2025_09_realistic/
+runs/validation_2025_09_realistic_v2/
+runs/validation_2025_09_v2/
+runs/validation_2025_09_v3/
+runs/validation_2026_03/
+runs/walk_forward_6m/
+runs/walk_forward_6m_old_partial/
+runs/walk_forward_6m_v2/
+runs/walk_forward_6m_v3/
+
+# ─── Secrets / credentials (belt-and-suspenders) ─────────────────────────────
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx

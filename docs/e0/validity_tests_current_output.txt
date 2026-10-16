@@ -1,0 +1,25 @@
+VALIDITY TESTS - verbatim output on Phase-A-v2 + E0 (stand-in runner; expected: defect assertions FAIL, controls PASS)
+
+PASSED=16 FAILED=11
+---- tests_validity.test_validity_v1_h4_reapplication::TestH4EventsAreAppliedChronologically::test_a_confirmed_reversal_is_not_undone_by_replayed_history_in_the_same_step FAIL
+AssertionError: [('2026-01-17 08:00:00+00:00', 'BULLISH')]
+---- tests_validity.test_validity_v1_h4_reapplication::TestH4EventsAreAppliedChronologically::test_one_market_break_is_applied_once_not_as_choch_then_again_as_bos FAIL
+AssertionError: the same break was applied more than once under different classifications: [('XAUUSD:H4:LOW:h4-13:h4-20',), ('XAUUSD:H4:LOW:h4-2:h4-21',)]
+---- tests_validity.test_validity_v1_h4_reapplication::TestH4EventsAreAppliedChronologically::test_structure_events_are_applied_in_non_decreasing_time_order FAIL
+AssertionError: events applied out of time order (index, previous, this): [(4, datetime.datetime(2026, 1, 17, 8, 0, tzinfo=datetime.timezone.utc), datetime.datetime(2026, 1, 13, 0, 0, tzinfo=datetime.timezone.utc))]
+---- tests_validity.test_validity_v2_confirmation_predates_eligibility::TestConfirmationCannotPredateSetupEligibility::test_break_candle_must_close_at_or_after_the_step_the_setup_first_existed FAIL
+AssertionError: confirmed by a break candle closed at 2026-01-05 00:30:00+00:00, before the setup existed (2026-01-05 00:40:00+00:00)
+---- tests_validity.test_validity_v2_confirmation_predates_eligibility::TestConfirmationCannotPredateSetupEligibility::test_no_position_may_open_at_a_price_from_before_the_setup_existed FAIL
+AssertionError: position entered at 2026-01-05 00:30:00+00:00, earlier than first-seen 2026-01-05 00:40:00+00:00
+---- tests_validity.test_validity_v2_confirmation_predates_eligibility::TestConfirmationCannotPredateSetupEligibility::test_the_decision_event_is_not_dated_after_the_candle_it_trades FAIL
+AssertionError: confirmation must be decided in the step of its own break candle
+---- tests_validity.test_validity_v3_stale_decisions::TestDecisionIsMadeAtTheBreakStepOrRePriced::test_a_confirmed_setup_without_targets_must_reach_a_terminal_state_not_linger FAIL
+AssertionError: setup stuck CONFIRMED with no decision
+---- tests_validity.test_validity_v3_stale_decisions::TestDecisionIsMadeAtTheBreakStepOrRePriced::test_approval_must_occur_in_the_confirmation_step FAIL
+AssertionError: approved 2026-01-05 00:45:00+00:00, confirmed 2026-01-05 00:30:00+00:00
+---- tests_validity.test_validity_v3_stale_decisions::TestDecisionIsMadeAtTheBreakStepOrRePriced::test_targets_missing_at_the_break_must_not_produce_a_later_trade_at_the_old_price FAIL
+AssertionError: position entered at 2026-01-05 00:30:00+00:00 (price of that old candle) but decided in step 2026-01-05 00:45:00+00:00
+---- tests_validity.test_validity_v3_stale_decisions::TestOpenPositionPathNeverFillsAtAPastPrice::test_a_setup_confirmed_while_a_position_is_open_never_opens_later_at_its_old_break_price FAIL
+AssertionError: decision:s2:2026-01-05T00:30:00+00:00: opened in step 2026-01-05 01:20:00+00:00 at the price of candle closed 2026-01-05 00:30:00+00:00
+---- tests_validity.test_validity_v4_duplicate_events::TestOneEconomicEventYieldsOneSetup::test_pool_variants_within_the_equal_level_tolerance_yield_a_single_setup FAIL
+AssertionError: 3 setups for ONE sweep + displacement + zone

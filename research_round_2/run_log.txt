@@ -1,0 +1,800 @@
+[2026-09-14T21:20:31.011396+00:00] Starting backtest run. CSV=C:\Users\hp\Downloads\xauusd_working\XAUUSD_ticks_2025-09-01_2026-08-31.csv window=(None -> None) output_dir=C:\Users\hp\Downloads\smc-trading-engine-milestone1\smc-trading-engine\research_round_2
+[2026-09-14T21:20:31.026989+00:00] ATR-01 LOCKED: period=14, Wilder smoothing (docs/DECISIONS.md)
+[2026-09-14T21:20:31.026989+00:00] initial_equity=10000 (disclosed simplification -- see script docstring)
+[2026-09-14T21:20:31.036758+00:00] Streaming CSV -> ticks -> M1 -> M5/H4 fan-out (single pass, zero-materialization)...
+[2026-09-14T21:20:46.039094+00:00] progress: elapsed=15s  valid_ticks=1,168,375  skipped_before_window=0  invalid_rows=0  M5=1,115  H4=24  replay_steps=0  trades=0  events=0
+[2026-09-14T21:21:01.040816+00:00] progress: elapsed=30s  valid_ticks=2,422,051  skipped_before_window=0  invalid_rows=0  M5=2,427  H4=54  replay_steps=0  trades=0  events=0
+[2026-09-14T21:21:16.042528+00:00] progress: elapsed=45s  valid_ticks=3,564,559  skipped_before_window=0  invalid_rows=0  M5=3,744  H4=83  replay_steps=0  trades=0  events=0
+[2026-09-14T21:21:31.031001+00:00] progress: elapsed=60s  valid_ticks=4,487,354  skipped_before_window=0  invalid_rows=0  M5=4,783  H4=107  replay_steps=0  trades=0  events=0
+[2026-09-14T21:21:46.042717+00:00] progress: elapsed=75s  valid_ticks=5,567,495  skipped_before_window=0  invalid_rows=0  M5=5,836  H4=131  replay_steps=0  trades=0  events=0
+[2026-09-14T21:22:01.057415+00:00] progress: elapsed=90s  valid_ticks=6,684,283  skipped_before_window=0  invalid_rows=0  M5=6,889  H4=155  replay_steps=0  trades=0  events=0
+[2026-09-14T21:22:16.067628+00:00] progress: elapsed=105s  valid_ticks=7,835,649  skipped_before_window=0  invalid_rows=0  M5=7,834  H4=175  replay_steps=0  trades=0  events=0
+[2026-09-14T21:22:31.072600+00:00] progress: elapsed=120s  valid_ticks=8,952,281  skipped_before_window=0  invalid_rows=0  M5=8,533  H4=192  replay_steps=0  trades=0  events=0
+[2026-09-14T21:22:46.072639+00:00] progress: elapsed=135s  valid_ticks=10,124,646  skipped_before_window=0  invalid_rows=0  M5=9,295  H4=208  replay_steps=0  trades=0  events=0
+[2026-09-14T21:23:01.082984+00:00] progress: elapsed=150s  valid_ticks=11,257,274  skipped_before_window=0  invalid_rows=0  M5=9,872  H4=222  replay_steps=0  trades=0  events=0
+[2026-09-14T21:23:16.073916+00:00] progress: elapsed=165s  valid_ticks=12,374,664  skipped_before_window=0  invalid_rows=0  M5=10,430  H4=234  replay_steps=0  trades=0  events=0
+[2026-09-14T21:23:31.100712+00:00] progress: elapsed=180s  valid_ticks=13,450,603  skipped_before_window=0  invalid_rows=0  M5=11,186  H4=251  replay_steps=0  trades=0  events=0
+[2026-09-14T21:23:46.095930+00:00] progress: elapsed=195s  valid_ticks=14,594,824  skipped_before_window=0  invalid_rows=0  M5=11,992  H4=269  replay_steps=0  trades=0  events=0
+[2026-09-14T21:24:01.103706+00:00] progress: elapsed=210s  valid_ticks=15,825,698  skipped_before_window=0  invalid_rows=0  M5=13,040  H4=294  replay_steps=0  trades=0  events=0
+[2026-09-14T21:24:16.201344+00:00] progress: elapsed=225s  valid_ticks=17,031,252  skipped_before_window=0  invalid_rows=0  M5=14,176  H4=321  replay_steps=0  trades=0  events=0
+[2026-09-14T21:24:31.200778+00:00] progress: elapsed=240s  valid_ticks=18,100,424  skipped_before_window=0  invalid_rows=0  M5=14,895  H4=338  replay_steps=0  trades=0  events=0
+[2026-09-14T21:24:46.232480+00:00] progress: elapsed=255s  valid_ticks=19,340,229  skipped_before_window=0  invalid_rows=0  M5=15,815  H4=358  replay_steps=0  trades=0  events=0
+[2026-09-14T21:25:01.238991+00:00] progress: elapsed=270s  valid_ticks=20,615,883  skipped_before_window=0  invalid_rows=0  M5=16,857  H4=383  replay_steps=0  trades=0  events=0
+[2026-09-14T21:25:16.247188+00:00] progress: elapsed=285s  valid_ticks=21,882,172  skipped_before_window=0  invalid_rows=0  M5=17,957  H4=408  replay_steps=0  trades=0  events=0
+[2026-09-14T21:25:31.252636+00:00] progress: elapsed=300s  valid_ticks=23,152,497  skipped_before_window=0  invalid_rows=0  M5=19,063  H4=434  replay_steps=0  trades=0  events=0
+[2026-09-14T21:25:46.252134+00:00] progress: elapsed=315s  valid_ticks=24,304,494  skipped_before_window=0  invalid_rows=0  M5=19,948  H4=453  replay_steps=0  trades=0  events=0
+[2026-09-14T21:26:01.248517+00:00] progress: elapsed=330s  valid_ticks=25,111,955  skipped_before_window=0  invalid_rows=0  M5=20,619  H4=468  replay_steps=0  trades=0  events=0
+[2026-09-14T21:26:16.262332+00:00] progress: elapsed=345s  valid_ticks=25,727,044  skipped_before_window=0  invalid_rows=0  M5=21,088  H4=479  replay_steps=0  trades=0  events=0
+[2026-09-14T21:26:31.287296+00:00] progress: elapsed=360s  valid_ticks=26,257,272  skipped_before_window=0  invalid_rows=0  M5=21,582  H4=490  replay_steps=0  trades=0  events=0
+[2026-09-14T21:26:46.315640+00:00] progress: elapsed=375s  valid_ticks=26,675,612  skipped_before_window=0  invalid_rows=0  M5=21,917  H4=498  replay_steps=0  trades=0  events=0
+[2026-09-14T21:27:01.357399+00:00] progress: elapsed=390s  valid_ticks=27,101,248  skipped_before_window=0  invalid_rows=0  M5=22,191  H4=505  replay_steps=0  trades=0  events=0
+[2026-09-14T21:27:16.365363+00:00] progress: elapsed=405s  valid_ticks=27,714,915  skipped_before_window=0  invalid_rows=0  M5=22,543  H4=513  replay_steps=0  trades=0  events=0
+[2026-09-14T21:27:31.411079+00:00] progress: elapsed=420s  valid_ticks=28,310,397  skipped_before_window=0  invalid_rows=0  M5=22,881  H4=520  replay_steps=0  trades=0  events=0
+[2026-09-14T21:27:46.426030+00:00] progress: elapsed=435s  valid_ticks=28,948,553  skipped_before_window=0  invalid_rows=0  M5=23,286  H4=530  replay_steps=0  trades=0  events=0
+[2026-09-14T21:28:01.437418+00:00] progress: elapsed=450s  valid_ticks=29,611,713  skipped_before_window=0  invalid_rows=0  M5=23,742  H4=541  replay_steps=0  trades=0  events=0
+[2026-09-14T21:28:16.477471+00:00] progress: elapsed=465s  valid_ticks=30,297,250  skipped_before_window=0  invalid_rows=0  M5=24,251  H4=552  replay_steps=0  trades=0  events=0
+[2026-09-14T21:28:31.522057+00:00] progress: elapsed=480s  valid_ticks=30,981,215  skipped_before_window=0  invalid_rows=0  M5=24,786  H4=564  replay_steps=0  trades=0  events=0
+[2026-09-14T21:28:46.547282+00:00] progress: elapsed=496s  valid_ticks=31,637,263  skipped_before_window=0  invalid_rows=0  M5=25,219  H4=574  replay_steps=0  trades=0  events=0
+[2026-09-14T21:29:01.554332+00:00] progress: elapsed=511s  valid_ticks=32,260,096  skipped_before_window=0  invalid_rows=0  M5=25,667  H4=584  replay_steps=0  trades=0  events=0
+[2026-09-14T21:29:16.565786+00:00] progress: elapsed=526s  valid_ticks=32,941,993  skipped_before_window=0  invalid_rows=0  M5=26,175  H4=595  replay_steps=0  trades=0  events=0
+[2026-09-14T21:29:31.587064+00:00] progress: elapsed=541s  valid_ticks=33,605,840  skipped_before_window=0  invalid_rows=0  M5=26,726  H4=609  replay_steps=0  trades=0  events=0
+[2026-09-14T21:29:46.595649+00:00] progress: elapsed=556s  valid_ticks=34,275,004  skipped_before_window=0  invalid_rows=0  M5=27,214  H4=619  replay_steps=0  trades=0  events=0
+[2026-09-14T21:30:01.608646+00:00] progress: elapsed=571s  valid_ticks=34,931,253  skipped_before_window=0  invalid_rows=0  M5=27,704  H4=631  replay_steps=0  trades=0  events=0
+[2026-09-14T21:30:16.617266+00:00] progress: elapsed=586s  valid_ticks=35,585,894  skipped_before_window=0  invalid_rows=0  M5=28,063  H4=639  replay_steps=0  trades=0  events=0
+[2026-09-14T21:30:31.623128+00:00] progress: elapsed=601s  valid_ticks=36,269,853  skipped_before_window=0  invalid_rows=0  M5=28,341  H4=648  replay_steps=0  trades=0  events=0
+[2026-09-14T21:30:46.682208+00:00] progress: elapsed=616s  valid_ticks=36,876,893  skipped_before_window=0  invalid_rows=0  M5=28,565  H4=653  replay_steps=0  trades=0  events=0
+[2026-09-14T21:31:01.716909+00:00] progress: elapsed=631s  valid_ticks=37,468,111  skipped_before_window=0  invalid_rows=0  M5=28,753  H4=657  replay_steps=0  trades=0  events=0
+[2026-09-14T21:31:16.810096+00:00] progress: elapsed=646s  valid_ticks=37,704,873  skipped_before_window=0  invalid_rows=0  M5=28,832  H4=660  replay_steps=0  trades=0  events=0
+[2026-09-14T21:31:31.823386+00:00] progress: elapsed=661s  valid_ticks=38,231,737  skipped_before_window=0  invalid_rows=0  M5=28,998  H4=663  replay_steps=0  trades=0  events=0
+[2026-09-14T21:31:46.840838+00:00] progress: elapsed=676s  valid_ticks=39,389,741  skipped_before_window=0  invalid_rows=0  M5=29,527  H4=675  replay_steps=0  trades=0  events=0
+[2026-09-14T21:32:01.850235+00:00] progress: elapsed=691s  valid_ticks=40,613,292  skipped_before_window=0  invalid_rows=0  M5=30,062  H4=686  replay_steps=0  trades=0  events=0
+[2026-09-14T21:32:16.844742+00:00] progress: elapsed=706s  valid_ticks=41,802,664  skipped_before_window=0  invalid_rows=0  M5=31,032  H4=709  replay_steps=0  trades=0  events=0
+[2026-09-14T21:32:31.851792+00:00] progress: elapsed=721s  valid_ticks=43,049,622  skipped_before_window=0  invalid_rows=0  M5=32,283  H4=738  replay_steps=0  trades=0  events=0
+[2026-09-14T21:32:46.853001+00:00] progress: elapsed=736s  valid_ticks=44,293,817  skipped_before_window=0  invalid_rows=0  M5=33,514  H4=767  replay_steps=0  trades=0  events=0
+[2026-09-14T21:33:01.863894+00:00] progress: elapsed=751s  valid_ticks=45,567,401  skipped_before_window=0  invalid_rows=0  M5=34,432  H4=788  replay_steps=0  trades=0  events=0
+[2026-09-14T21:33:16.883785+00:00] progress: elapsed=766s  valid_ticks=46,810,964  skipped_before_window=0  invalid_rows=0  M5=35,269  H4=806  replay_steps=0  trades=0  events=0
+[2026-09-14T21:33:31.887883+00:00] progress: elapsed=781s  valid_ticks=48,005,531  skipped_before_window=0  invalid_rows=0  M5=36,212  H4=832  replay_steps=0  trades=0  events=0
+[2026-09-14T21:33:46.893461+00:00] progress: elapsed=796s  valid_ticks=49,169,545  skipped_before_window=0  invalid_rows=0  M5=37,112  H4=851  replay_steps=0  trades=0  events=0
+[2026-09-14T21:34:01.933639+00:00] progress: elapsed=811s  valid_ticks=50,452,125  skipped_before_window=0  invalid_rows=0  M5=37,665  H4=864  replay_steps=0  trades=0  events=0
+[2026-09-14T21:34:16.934550+00:00] progress: elapsed=826s  valid_ticks=51,693,816  skipped_before_window=0  invalid_rows=0  M5=38,235  H4=877  replay_steps=0  trades=0  events=0
+[2026-09-14T21:34:31.949654+00:00] progress: elapsed=841s  valid_ticks=52,911,660  skipped_before_window=0  invalid_rows=0  M5=39,041  H4=895  replay_steps=0  trades=0  events=0
+[2026-09-14T21:34:46.958414+00:00] progress: elapsed=856s  valid_ticks=54,152,329  skipped_before_window=0  invalid_rows=0  M5=39,869  H4=913  replay_steps=0  trades=0  events=0
+[2026-09-14T21:35:01.966543+00:00] progress: elapsed=871s  valid_ticks=55,323,650  skipped_before_window=0  invalid_rows=0  M5=40,668  H4=932  replay_steps=0  trades=0  events=0
+[2026-09-14T21:35:16.982263+00:00] progress: elapsed=886s  valid_ticks=56,524,036  skipped_before_window=0  invalid_rows=0  M5=41,766  H4=957  replay_steps=0  trades=0  events=0
+[2026-09-14T21:35:31.977008+00:00] progress: elapsed=901s  valid_ticks=57,804,202  skipped_before_window=0  invalid_rows=0  M5=42,979  H4=984  replay_steps=0  trades=0  events=0
+[2026-09-14T21:35:46.990184+00:00] progress: elapsed=916s  valid_ticks=58,978,557  skipped_before_window=0  invalid_rows=0  M5=43,895  H4=1,004  replay_steps=0  trades=0  events=0
+[2026-09-14T21:36:01.999844+00:00] progress: elapsed=931s  valid_ticks=60,201,651  skipped_before_window=0  invalid_rows=0  M5=44,785  H4=1,024  replay_steps=0  trades=0  events=0
+[2026-09-14T21:36:17.005018+00:00] progress: elapsed=946s  valid_ticks=61,438,304  skipped_before_window=0  invalid_rows=0  M5=45,615  H4=1,043  replay_steps=0  trades=0  events=0
+[2026-09-14T21:36:32.032467+00:00] progress: elapsed=961s  valid_ticks=62,651,061  skipped_before_window=0  invalid_rows=0  M5=46,460  H4=1,062  replay_steps=0  trades=0  events=0
+[2026-09-14T21:36:47.041304+00:00] progress: elapsed=976s  valid_ticks=63,866,842  skipped_before_window=0  invalid_rows=0  M5=47,321  H4=1,083  replay_steps=0  trades=0  events=0
+[2026-09-14T21:37:02.053784+00:00] progress: elapsed=991s  valid_ticks=65,095,606  skipped_before_window=0  invalid_rows=0  M5=48,059  H4=1,102  replay_steps=0  trades=0  events=0
+[2026-09-14T21:37:17.122529+00:00] progress: elapsed=1006s  valid_ticks=65,748,723  skipped_before_window=0  invalid_rows=0  M5=48,469  H4=1,113  replay_steps=0  trades=0  events=0
+[2026-09-14T21:37:32.146845+00:00] progress: elapsed=1021s  valid_ticks=66,052,367  skipped_before_window=0  invalid_rows=0  M5=48,676  H4=1,117  replay_steps=0  trades=0  events=0
+[2026-09-14T21:37:47.166757+00:00] progress: elapsed=1036s  valid_ticks=66,499,026  skipped_before_window=0  invalid_rows=0  M5=48,940  H4=1,123  replay_steps=0  trades=0  events=0
+[2026-09-14T21:38:02.184483+00:00] progress: elapsed=1051s  valid_ticks=67,061,917  skipped_before_window=0  invalid_rows=0  M5=49,428  H4=1,135  replay_steps=0  trades=0  events=0
+[2026-09-14T21:38:17.248016+00:00] progress: elapsed=1066s  valid_ticks=67,622,014  skipped_before_window=0  invalid_rows=0  M5=49,831  H4=1,144  replay_steps=0  trades=0  events=0
+[2026-09-14T21:38:32.266517+00:00] progress: elapsed=1081s  valid_ticks=68,278,340  skipped_before_window=0  invalid_rows=0  M5=50,342  H4=1,156  replay_steps=0  trades=0  events=0
+[2026-09-14T21:38:47.278571+00:00] progress: elapsed=1096s  valid_ticks=68,955,845  skipped_before_window=0  invalid_rows=0  M5=50,986  H4=1,171  replay_steps=0  trades=0  events=0
+[2026-09-14T21:39:02.290836+00:00] progress: elapsed=1111s  valid_ticks=69,708,640  skipped_before_window=0  invalid_rows=0  M5=51,625  H4=1,186  replay_steps=0  trades=0  events=0
+[2026-09-14T21:39:17.292176+00:00] progress: elapsed=1126s  valid_ticks=70,465,379  skipped_before_window=0  invalid_rows=0  M5=52,095  H4=1,197  replay_steps=0  trades=0  events=0
+[2026-09-14T21:39:32.319470+00:00] progress: elapsed=1141s  valid_ticks=71,230,901  skipped_before_window=0  invalid_rows=0  M5=52,520  H4=1,206  replay_steps=0  trades=0  events=0
+[2026-09-14T21:39:47.326352+00:00] progress: elapsed=1156s  valid_ticks=71,976,527  skipped_before_window=0  invalid_rows=0  M5=52,971  H4=1,217  replay_steps=0  trades=0  events=0
+[2026-09-14T21:40:02.349572+00:00] progress: elapsed=1171s  valid_ticks=72,751,650  skipped_before_window=0  invalid_rows=0  M5=53,720  H4=1,234  replay_steps=0  trades=0  events=0
+[2026-09-14T21:40:17.346971+00:00] progress: elapsed=1186s  valid_ticks=73,521,032  skipped_before_window=0  invalid_rows=0  M5=54,231  H4=1,248  replay_steps=0  trades=0  events=0
+[2026-09-14T21:40:32.377396+00:00] progress: elapsed=1201s  valid_ticks=74,220,675  skipped_before_window=0  invalid_rows=0  M5=54,698  H4=1,258  replay_steps=0  trades=0  events=0
+[2026-09-14T21:40:47.388785+00:00] progress: elapsed=1216s  valid_ticks=74,933,562  skipped_before_window=0  invalid_rows=0  M5=55,243  H4=1,271  replay_steps=0  trades=0  events=0
+[2026-09-14T21:41:02.403859+00:00] progress: elapsed=1231s  valid_ticks=75,660,606  skipped_before_window=0  invalid_rows=0  M5=55,827  H4=1,284  replay_steps=0  trades=0  events=0
+[2026-09-14T21:41:17.420097+00:00] progress: elapsed=1246s  valid_ticks=76,263,152  skipped_before_window=0  invalid_rows=0  M5=56,443  H4=1,298  replay_steps=0  trades=0  events=0
+[2026-09-14T21:41:32.430625+00:00] progress: elapsed=1261s  valid_ticks=77,150,725  skipped_before_window=0  invalid_rows=0  M5=57,170  H4=1,318  replay_steps=0  trades=0  events=0
+[2026-09-14T21:41:47.428978+00:00] progress: elapsed=1276s  valid_ticks=78,402,509  skipped_before_window=0  invalid_rows=0  M5=58,071  H4=1,338  replay_steps=0  trades=0  events=0
+[2026-09-14T21:42:02.433898+00:00] progress: elapsed=1291s  valid_ticks=79,697,507  skipped_before_window=0  invalid_rows=0  M5=59,014  H4=1,360  replay_steps=0  trades=0  events=0
+[2026-09-14T21:42:17.430684+00:00] progress: elapsed=1306s  valid_ticks=80,941,343  skipped_before_window=0  invalid_rows=0  M5=60,242  H4=1,388  replay_steps=0  trades=0  events=0
+[2026-09-14T21:42:32.441841+00:00] progress: elapsed=1321s  valid_ticks=82,129,764  skipped_before_window=0  invalid_rows=0  M5=61,677  H4=1,421  replay_steps=0  trades=0  events=0
+[2026-09-14T21:42:47.462107+00:00] progress: elapsed=1336s  valid_ticks=83,281,544  skipped_before_window=0  invalid_rows=0  M5=62,814  H4=1,446  replay_steps=0  trades=0  events=0
+[2026-09-14T21:43:02.461192+00:00] progress: elapsed=1351s  valid_ticks=84,234,614  skipped_before_window=0  invalid_rows=0  M5=63,817  H4=1,469  replay_steps=0  trades=0  events=0
+[2026-09-14T21:43:06.300919+00:00] Streaming complete. M5=64,003 H4=1,474 valid_ticks=84,471,011 invalid_rows=0
+[2026-09-14T21:43:06.300919+00:00] Starting ReplayPipeline over the full M5 series...
+[2026-09-14T21:43:17.532164+00:00] progress: elapsed=1367s  replay_steps=245  trades=0  events=339
+[2026-09-14T21:43:32.544390+00:00] progress: elapsed=1382s  replay_steps=329  trades=0  events=507
+[2026-09-14T21:43:47.688784+00:00] progress: elapsed=1397s  replay_steps=396  trades=0  events=907
+[2026-09-14T21:44:02.685142+00:00] progress: elapsed=1412s  replay_steps=468  trades=0  events=1,199
+[2026-09-14T21:44:17.829380+00:00] progress: elapsed=1427s  replay_steps=544  trades=0  events=1,436
+[2026-09-14T21:44:32.876127+00:00] progress: elapsed=1442s  replay_steps=608  trades=0  events=1,605
+[2026-09-14T21:44:47.997379+00:00] progress: elapsed=1457s  replay_steps=670  trades=0  events=1,772
+[2026-09-14T21:45:03.156675+00:00] progress: elapsed=1472s  replay_steps=742  trades=0  events=1,967
+[2026-09-14T21:45:18.233786+00:00] progress: elapsed=1487s  replay_steps=816  trades=0  events=2,232
+[2026-09-14T21:45:33.285794+00:00] progress: elapsed=1502s  replay_steps=876  trades=0  events=2,560
+[2026-09-14T21:45:48.867128+00:00] progress: elapsed=1518s  replay_steps=943  trades=0  events=2,728
+[2026-09-14T21:46:04.006773+00:00] progress: elapsed=1533s  replay_steps=1,004  trades=0  events=2,892
+[2026-09-14T21:46:19.270434+00:00] progress: elapsed=1548s  replay_steps=1,071  trades=0  events=3,022
+[2026-09-14T21:46:34.501923+00:00] progress: elapsed=1563s  replay_steps=1,129  trades=0  events=3,210
+[2026-09-14T21:46:49.694299+00:00] progress: elapsed=1579s  replay_steps=1,165  trades=0  events=3,360
+[2026-09-14T21:47:04.872422+00:00] progress: elapsed=1594s  replay_steps=1,225  trades=0  events=3,651
+[2026-09-14T21:47:19.897691+00:00] progress: elapsed=1609s  replay_steps=1,274  trades=0  events=3,917
+[2026-09-14T21:47:35.043988+00:00] progress: elapsed=1624s  replay_steps=1,326  trades=0  events=4,109
+[2026-09-14T21:47:51.300580+00:00] progress: elapsed=1640s  replay_steps=1,367  trades=0  events=4,446
+[2026-09-14T21:48:06.399352+00:00] progress: elapsed=1655s  replay_steps=1,422  trades=0  events=4,627
+[2026-09-14T21:48:21.540362+00:00] progress: elapsed=1671s  replay_steps=1,485  trades=0  events=4,693
+[2026-09-14T21:48:36.618679+00:00] progress: elapsed=1686s  replay_steps=1,532  trades=0  events=4,774
+[2026-09-14T21:48:51.788534+00:00] progress: elapsed=1701s  replay_steps=1,579  trades=0  events=4,913
+[2026-09-14T21:49:06.789245+00:00] progress: elapsed=1716s  replay_steps=1,623  trades=0  events=5,036
+[2026-09-14T21:49:21.977556+00:00] progress: elapsed=1731s  replay_steps=1,682  trades=0  events=5,176
+[2026-09-14T21:49:37.080860+00:00] progress: elapsed=1746s  replay_steps=1,713  trades=0  events=5,254
+[2026-09-14T21:49:52.182266+00:00] progress: elapsed=1761s  replay_steps=1,758  trades=0  events=5,297
+[2026-09-14T21:50:07.352390+00:00] progress: elapsed=1776s  replay_steps=1,795  trades=0  events=5,444
+[2026-09-14T21:50:22.462032+00:00] progress: elapsed=1791s  replay_steps=1,843  trades=0  events=5,666
+[2026-09-14T21:50:37.757152+00:00] progress: elapsed=1807s  replay_steps=1,886  trades=0  events=5,902
+[2026-09-14T21:50:53.029906+00:00] progress: elapsed=1822s  replay_steps=1,935  trades=0  events=6,073
+[2026-09-14T21:51:08.122583+00:00] progress: elapsed=1837s  replay_steps=1,985  trades=0  events=6,260
+[2026-09-14T21:51:23.372895+00:00] progress: elapsed=1852s  replay_steps=2,025  trades=0  events=6,381
+[2026-09-14T21:51:38.602992+00:00] progress: elapsed=1868s  replay_steps=2,066  trades=0  events=6,653
+[2026-09-14T21:51:53.854813+00:00] progress: elapsed=1883s  replay_steps=2,113  trades=0  events=6,957
+[2026-09-14T21:52:08.938909+00:00] progress: elapsed=1898s  replay_steps=2,149  trades=0  events=7,021
+[2026-09-14T21:52:26.228006+00:00] progress: elapsed=1915s  replay_steps=2,187  trades=0  events=7,129
+[2026-09-14T21:52:41.292862+00:00] progress: elapsed=1930s  replay_steps=2,232  trades=0  events=7,364
+[2026-09-14T21:52:58.151331+00:00] progress: elapsed=1947s  replay_steps=2,268  trades=0  events=7,644
+[2026-09-14T21:53:13.236701+00:00] progress: elapsed=1962s  replay_steps=2,299  trades=0  events=7,827
+[2026-09-14T21:53:28.580119+00:00] progress: elapsed=1978s  replay_steps=2,336  trades=0  events=8,032
+[2026-09-14T21:53:44.600290+00:00] progress: elapsed=1994s  replay_steps=2,372  trades=0  events=8,115
+[2026-09-14T21:53:59.623943+00:00] progress: elapsed=2009s  replay_steps=2,410  trades=0  events=8,239
+[2026-09-14T21:54:14.822853+00:00] progress: elapsed=2024s  replay_steps=2,432  trades=0  events=8,312
+[2026-09-14T21:54:29.844488+00:00] progress: elapsed=2039s  replay_steps=2,474  trades=0  events=8,437
+[2026-09-14T21:54:44.965105+00:00] progress: elapsed=2054s  replay_steps=2,515  trades=0  events=8,532
+[2026-09-14T21:55:00.309172+00:00] progress: elapsed=2069s  replay_steps=2,546  trades=0  events=8,619
+[2026-09-14T21:55:15.419475+00:00] progress: elapsed=2084s  replay_steps=2,584  trades=0  events=8,708
+[2026-09-14T21:55:30.579665+00:00] progress: elapsed=2100s  replay_steps=2,621  trades=0  events=8,746
+[2026-09-14T21:55:45.808495+00:00] progress: elapsed=2115s  replay_steps=2,659  trades=0  events=8,804
+[2026-09-14T21:56:00.981693+00:00] progress: elapsed=2130s  replay_steps=2,686  trades=0  events=8,967
+[2026-09-14T21:56:16.232748+00:00] progress: elapsed=2145s  replay_steps=2,728  trades=0  events=9,058
+[2026-09-14T21:56:31.415020+00:00] progress: elapsed=2160s  replay_steps=2,766  trades=0  events=9,231
+[2026-09-14T21:56:46.579992+00:00] progress: elapsed=2176s  replay_steps=2,806  trades=0  events=9,335
+[2026-09-14T21:57:01.900493+00:00] progress: elapsed=2191s  replay_steps=2,846  trades=0  events=9,474
+[2026-09-14T21:57:16.914973+00:00] progress: elapsed=2206s  replay_steps=2,873  trades=0  events=9,546
+[2026-09-14T21:57:32.214217+00:00] progress: elapsed=2221s  replay_steps=2,902  trades=0  events=9,712
+[2026-09-14T21:57:47.411420+00:00] progress: elapsed=2236s  replay_steps=2,927  trades=0  events=9,773
+[2026-09-14T21:58:02.540692+00:00] progress: elapsed=2252s  replay_steps=2,965  trades=0  events=9,887
+[2026-09-14T21:58:20.591301+00:00] progress: elapsed=2270s  replay_steps=2,994  trades=0  events=9,935
+[2026-09-14T21:58:35.825555+00:00] progress: elapsed=2285s  replay_steps=3,024  trades=0  events=10,064
+[2026-09-14T21:58:50.987935+00:00] progress: elapsed=2300s  replay_steps=3,055  trades=0  events=10,173
+[2026-09-14T21:59:05.997055+00:00] progress: elapsed=2315s  replay_steps=3,082  trades=0  events=10,298
+[2026-09-14T21:59:21.224714+00:00] progress: elapsed=2330s  replay_steps=3,106  trades=0  events=10,383
+[2026-09-14T21:59:36.293777+00:00] progress: elapsed=2345s  replay_steps=3,141  trades=0  events=10,482
+[2026-09-14T21:59:51.498537+00:00] progress: elapsed=2360s  replay_steps=3,169  trades=0  events=10,616
+[2026-09-14T22:00:06.902425+00:00] progress: elapsed=2376s  replay_steps=3,193  trades=0  events=10,719
+[2026-09-14T22:00:21.958156+00:00] progress: elapsed=2391s  replay_steps=3,223  trades=0  events=10,864
+[2026-09-14T22:00:36.995102+00:00] progress: elapsed=2406s  replay_steps=3,243  trades=0  events=11,087
+[2026-09-14T22:00:52.195750+00:00] progress: elapsed=2421s  replay_steps=3,267  trades=0  events=11,213
+[2026-09-14T22:01:07.581415+00:00] progress: elapsed=2437s  replay_steps=3,292  trades=0  events=11,285
+[2026-09-14T22:01:22.935410+00:00] progress: elapsed=2452s  replay_steps=3,317  trades=0  events=11,506
+[2026-09-14T22:01:38.075466+00:00] progress: elapsed=2467s  replay_steps=3,348  trades=0  events=11,606
+[2026-09-14T22:01:53.310267+00:00] progress: elapsed=2482s  replay_steps=3,378  trades=0  events=11,765
+[2026-09-14T22:02:08.995495+00:00] progress: elapsed=2498s  replay_steps=3,398  trades=0  events=11,820
+[2026-09-14T22:02:24.060697+00:00] progress: elapsed=2513s  replay_steps=3,418  trades=0  events=11,876
+[2026-09-14T22:02:39.605069+00:00] progress: elapsed=2529s  replay_steps=3,438  trades=0  events=11,966
+[2026-09-14T22:02:55.095594+00:00] progress: elapsed=2544s  replay_steps=3,462  trades=0  events=12,067
+[2026-09-14T22:03:10.902393+00:00] progress: elapsed=2560s  replay_steps=3,481  trades=0  events=12,103
+[2026-09-14T22:03:26.454515+00:00] progress: elapsed=2575s  replay_steps=3,502  trades=0  events=12,200
+[2026-09-14T22:03:41.504952+00:00] progress: elapsed=2590s  replay_steps=3,522  trades=0  events=12,359
+[2026-09-14T22:03:56.617213+00:00] progress: elapsed=2606s  replay_steps=3,547  trades=0  events=12,519
+[2026-09-14T22:04:12.111434+00:00] progress: elapsed=2621s  replay_steps=3,572  trades=0  events=12,585
+[2026-09-14T22:04:27.341281+00:00] progress: elapsed=2636s  replay_steps=3,595  trades=0  events=12,670
+[2026-09-14T22:04:43.188879+00:00] progress: elapsed=2652s  replay_steps=3,620  trades=0  events=12,732
+[2026-09-14T22:04:58.271786+00:00] progress: elapsed=2667s  replay_steps=3,635  trades=0  events=12,777
+[2026-09-14T22:05:14.040383+00:00] progress: elapsed=2683s  replay_steps=3,654  trades=0  events=12,828
+[2026-09-14T22:05:29.044567+00:00] progress: elapsed=2698s  replay_steps=3,675  trades=0  events=12,844
+[2026-09-14T22:05:44.466283+00:00] progress: elapsed=2713s  replay_steps=3,699  trades=0  events=12,952
+[2026-09-14T22:05:59.729352+00:00] progress: elapsed=2729s  replay_steps=3,724  trades=0  events=13,057
+[2026-09-14T22:06:16.197819+00:00] progress: elapsed=2745s  replay_steps=3,748  trades=0  events=13,133
+[2026-09-14T22:06:31.881977+00:00] progress: elapsed=2761s  replay_steps=3,770  trades=0  events=13,204
+[2026-09-14T22:06:47.455455+00:00] progress: elapsed=2776s  replay_steps=3,793  trades=0  events=13,257
+[2026-09-14T22:07:02.657766+00:00] progress: elapsed=2792s  replay_steps=3,817  trades=0  events=13,287
+[2026-09-14T22:07:17.780148+00:00] progress: elapsed=2807s  replay_steps=3,837  trades=0  events=13,357
+[2026-09-14T22:07:33.380706+00:00] progress: elapsed=2822s  replay_steps=3,860  trades=0  events=13,469
+[2026-09-14T22:07:48.855579+00:00] progress: elapsed=2838s  replay_steps=3,881  trades=0  events=13,513
+[2026-09-14T22:08:04.834209+00:00] progress: elapsed=2854s  replay_steps=3,900  trades=0  events=13,595
+[2026-09-14T22:08:20.592328+00:00] progress: elapsed=2870s  replay_steps=3,916  trades=0  events=13,663
+[2026-09-14T22:08:36.927285+00:00] progress: elapsed=2886s  replay_steps=3,936  trades=0  events=13,693
+[2026-09-14T22:08:52.513540+00:00] progress: elapsed=2901s  replay_steps=3,953  trades=0  events=13,763
+[2026-09-14T22:09:07.872925+00:00] progress: elapsed=2917s  replay_steps=3,973  trades=0  events=13,807
+[2026-09-14T22:09:23.719791+00:00] progress: elapsed=2933s  replay_steps=3,985  trades=0  events=13,855
+[2026-09-14T22:09:39.230141+00:00] progress: elapsed=2948s  replay_steps=4,004  trades=0  events=13,928
+[2026-09-14T22:09:55.052701+00:00] progress: elapsed=2964s  replay_steps=4,024  trades=0  events=14,029
+[2026-09-14T22:10:12.037864+00:00] progress: elapsed=2981s  replay_steps=4,043  trades=0  events=14,180
+[2026-09-14T22:10:27.637508+00:00] progress: elapsed=2997s  replay_steps=4,066  trades=0  events=14,258
+[2026-09-14T22:10:43.289045+00:00] progress: elapsed=3012s  replay_steps=4,090  trades=0  events=14,323
+[2026-09-14T22:10:58.337711+00:00] progress: elapsed=3027s  replay_steps=4,110  trades=0  events=14,357
+[2026-09-14T22:11:13.713734+00:00] progress: elapsed=3043s  replay_steps=4,129  trades=0  events=14,480
+[2026-09-14T22:11:29.037214+00:00] progress: elapsed=3058s  replay_steps=4,148  trades=0  events=14,527
+[2026-09-14T22:11:44.430639+00:00] progress: elapsed=3073s  replay_steps=4,166  trades=0  events=14,554
+[2026-09-14T22:11:59.434842+00:00] progress: elapsed=3088s  replay_steps=4,184  trades=0  events=14,600
+[2026-09-14T22:12:14.962510+00:00] progress: elapsed=3104s  replay_steps=4,203  trades=0  events=14,642
+[2026-09-14T22:12:30.645786+00:00] progress: elapsed=3120s  replay_steps=4,224  trades=0  events=14,659
+[2026-09-14T22:12:45.781390+00:00] progress: elapsed=3135s  replay_steps=4,247  trades=0  events=14,664
+[2026-09-14T22:13:01.022669+00:00] progress: elapsed=3150s  replay_steps=4,269  trades=0  events=14,718
+[2026-09-14T22:13:16.666311+00:00] progress: elapsed=3166s  replay_steps=4,289  trades=0  events=14,794
+[2026-09-14T22:13:31.846092+00:00] progress: elapsed=3181s  replay_steps=4,311  trades=0  events=14,835
+[2026-09-14T22:13:46.863008+00:00] progress: elapsed=3196s  replay_steps=4,332  trades=0  events=14,858
+[2026-09-14T22:14:02.061992+00:00] progress: elapsed=3211s  replay_steps=4,352  trades=0  events=14,888
+[2026-09-14T22:14:17.395502+00:00] progress: elapsed=3226s  replay_steps=4,372  trades=0  events=14,930
+[2026-09-14T22:14:32.713359+00:00] progress: elapsed=3242s  replay_steps=4,394  trades=0  events=14,977
+[2026-09-14T22:14:48.326651+00:00] progress: elapsed=3257s  replay_steps=4,413  trades=0  events=15,026
+[2026-09-14T22:15:03.428743+00:00] progress: elapsed=3272s  replay_steps=4,433  trades=0  events=15,036
+[2026-09-14T22:15:18.510888+00:00] progress: elapsed=3287s  replay_steps=4,452  trades=0  events=15,036
+[2026-09-14T22:15:33.518670+00:00] progress: elapsed=3302s  replay_steps=4,466  trades=0  events=15,036
+[2026-09-14T22:15:48.783887+00:00] progress: elapsed=3318s  replay_steps=4,485  trades=0  events=15,061
+[2026-09-14T22:16:04.200447+00:00] progress: elapsed=3333s  replay_steps=4,501  trades=0  events=15,075
+[2026-09-14T22:16:20.239125+00:00] progress: elapsed=3349s  replay_steps=4,519  trades=0  events=15,092
+[2026-09-14T22:16:35.363396+00:00] progress: elapsed=3364s  replay_steps=4,534  trades=0  events=15,149
+[2026-09-14T22:16:50.986043+00:00] progress: elapsed=3380s  replay_steps=4,552  trades=0  events=15,207
+[2026-09-14T22:17:06.555171+00:00] progress: elapsed=3396s  replay_steps=4,571  trades=0  events=15,233
+[2026-09-14T22:17:22.299319+00:00] progress: elapsed=3411s  replay_steps=4,591  trades=0  events=15,265
+[2026-09-14T22:17:37.841181+00:00] progress: elapsed=3427s  replay_steps=4,608  trades=0  events=15,265
+[2026-09-14T22:17:53.179209+00:00] progress: elapsed=3442s  replay_steps=4,627  trades=0  events=15,289
+[2026-09-14T22:18:08.729867+00:00] progress: elapsed=3458s  replay_steps=4,644  trades=0  events=15,331
+[2026-09-14T22:18:24.152522+00:00] progress: elapsed=3473s  replay_steps=4,659  trades=0  events=15,379
+[2026-09-14T22:18:40.003942+00:00] progress: elapsed=3489s  replay_steps=4,678  trades=0  events=15,421
+[2026-09-14T22:18:55.456900+00:00] progress: elapsed=3504s  replay_steps=4,697  trades=0  events=15,455
+[2026-09-14T22:19:11.139698+00:00] progress: elapsed=3520s  replay_steps=4,716  trades=0  events=15,481
+[2026-09-14T22:19:26.156125+00:00] progress: elapsed=3535s  replay_steps=4,731  trades=0  events=15,519
+[2026-09-14T22:19:41.635610+00:00] progress: elapsed=3551s  replay_steps=4,750  trades=0  events=15,546
+[2026-09-14T22:19:56.936561+00:00] progress: elapsed=3566s  replay_steps=4,761  trades=0  events=15,588
+[2026-09-14T22:20:12.051285+00:00] progress: elapsed=3581s  replay_steps=4,775  trades=0  events=15,609
+[2026-09-14T22:20:27.415762+00:00] progress: elapsed=3596s  replay_steps=4,789  trades=0  events=15,710
+[2026-09-14T22:20:42.700621+00:00] progress: elapsed=3612s  replay_steps=4,801  trades=0  events=15,732
+[2026-09-14T22:20:57.891540+00:00] progress: elapsed=3627s  replay_steps=4,817  trades=0  events=15,791
+[2026-09-14T22:21:12.994691+00:00] progress: elapsed=3642s  replay_steps=4,829  trades=0  events=15,939
+[2026-09-14T22:21:28.287649+00:00] progress: elapsed=3657s  replay_steps=4,840  trades=0  events=16,041
+[2026-09-14T22:21:44.258638+00:00] progress: elapsed=3673s  replay_steps=4,854  trades=0  events=16,091
+[2026-09-14T22:21:59.983828+00:00] progress: elapsed=3689s  replay_steps=4,868  trades=0  events=16,168
+[2026-09-14T22:22:15.694289+00:00] progress: elapsed=3705s  replay_steps=4,881  trades=0  events=16,256
+[2026-09-14T22:22:31.426812+00:00] progress: elapsed=3720s  replay_steps=4,896  trades=0  events=16,274
+[2026-09-14T22:22:47.045757+00:00] progress: elapsed=3736s  replay_steps=4,909  trades=0  events=16,338
+[2026-09-14T22:23:03.482020+00:00] progress: elapsed=3752s  replay_steps=4,921  trades=0  events=16,428
+[2026-09-14T22:23:19.769281+00:00] progress: elapsed=3769s  replay_steps=4,929  trades=0  events=16,480
+[2026-09-14T22:23:35.081363+00:00] progress: elapsed=3784s  replay_steps=4,936  trades=0  events=16,535
+[2026-09-14T22:23:50.326021+00:00] progress: elapsed=3799s  replay_steps=4,946  trades=0  events=16,584
+[2026-09-14T22:24:06.333086+00:00] progress: elapsed=3815s  replay_steps=4,956  trades=0  events=16,665
+[2026-09-14T22:24:22.515302+00:00] progress: elapsed=3831s  replay_steps=4,970  trades=0  events=16,743
+[2026-09-14T22:24:37.763884+00:00] progress: elapsed=3847s  replay_steps=4,985  trades=0  events=16,782
+[2026-09-14T22:24:52.871229+00:00] progress: elapsed=3862s  replay_steps=4,999  trades=0  events=16,810
+[2026-09-14T22:25:08.298153+00:00] progress: elapsed=3877s  replay_steps=5,012  trades=0  events=16,835
+[2026-09-14T22:25:23.329523+00:00] progress: elapsed=3892s  replay_steps=5,027  trades=0  events=16,864
+[2026-09-14T22:25:38.978937+00:00] progress: elapsed=3908s  replay_steps=5,042  trades=0  events=16,899
+[2026-09-14T22:25:54.568188+00:00] progress: elapsed=3924s  replay_steps=5,059  trades=0  events=16,906
+[2026-09-14T22:26:10.126124+00:00] progress: elapsed=3939s  replay_steps=5,069  trades=0  events=16,914
+[2026-09-14T22:26:25.520449+00:00] progress: elapsed=3954s  replay_steps=5,083  trades=0  events=16,945
+[2026-09-14T22:26:41.282302+00:00] progress: elapsed=3970s  replay_steps=5,098  trades=0  events=17,106
+[2026-09-14T22:26:57.253601+00:00] progress: elapsed=3986s  replay_steps=5,112  trades=0  events=17,134
+[2026-09-14T22:27:12.999765+00:00] progress: elapsed=4002s  replay_steps=5,126  trades=0  events=17,174
+[2026-09-14T22:27:28.465342+00:00] progress: elapsed=4017s  replay_steps=5,138  trades=0  events=17,246
+[2026-09-14T22:27:44.313935+00:00] progress: elapsed=4033s  replay_steps=5,152  trades=0  events=17,298
+[2026-09-14T22:27:59.400733+00:00] progress: elapsed=4048s  replay_steps=5,165  trades=0  events=17,324
+[2026-09-14T22:28:15.310509+00:00] progress: elapsed=4064s  replay_steps=5,176  trades=0  events=17,335
+[2026-09-14T22:28:30.683310+00:00] progress: elapsed=4080s  replay_steps=5,188  trades=0  events=17,384
+[2026-09-14T22:28:47.081550+00:00] progress: elapsed=4096s  replay_steps=5,202  trades=0  events=17,414
+[2026-09-14T22:29:03.068275+00:00] progress: elapsed=4112s  replay_steps=5,217  trades=0  events=17,427
+[2026-09-14T22:29:18.527002+00:00] progress: elapsed=4128s  replay_steps=5,230  trades=0  events=17,453
+[2026-09-14T22:29:33.729321+00:00] progress: elapsed=4143s  replay_steps=5,246  trades=0  events=17,469
+[2026-09-14T22:29:49.264818+00:00] progress: elapsed=4158s  replay_steps=5,260  trades=0  events=17,517
+[2026-09-14T22:30:04.405037+00:00] progress: elapsed=4173s  replay_steps=5,275  trades=0  events=17,590
+[2026-09-14T22:30:20.070405+00:00] progress: elapsed=4189s  replay_steps=5,286  trades=0  events=17,627
+[2026-09-14T22:30:35.611065+00:00] progress: elapsed=4205s  replay_steps=5,301  trades=0  events=17,667
+[2026-09-14T22:30:53.486798+00:00] progress: elapsed=4222s  replay_steps=5,314  trades=0  events=17,735
+[2026-09-14T22:31:09.581532+00:00] progress: elapsed=4239s  replay_steps=5,325  trades=0  events=17,831
+[2026-09-14T22:31:26.077880+00:00] progress: elapsed=4255s  replay_steps=5,335  trades=0  events=17,847
+[2026-09-14T22:31:41.163226+00:00] progress: elapsed=4270s  replay_steps=5,344  trades=0  events=17,850
+[2026-09-14T22:31:56.464696+00:00] progress: elapsed=4285s  replay_steps=5,357  trades=0  events=17,879
+[2026-09-14T22:32:12.034478+00:00] progress: elapsed=4301s  replay_steps=5,371  trades=0  events=17,963
+[2026-09-14T22:32:27.049830+00:00] progress: elapsed=4316s  replay_steps=5,385  trades=0  events=18,100
+[2026-09-14T22:32:42.221615+00:00] progress: elapsed=4331s  replay_steps=5,399  trades=0  events=18,137
+[2026-09-14T22:32:57.739350+00:00] progress: elapsed=4347s  replay_steps=5,414  trades=0  events=18,157
+[2026-09-14T22:33:14.412053+00:00] progress: elapsed=4363s  replay_steps=5,426  trades=0  events=18,202
+[2026-09-14T22:33:30.416305+00:00] progress: elapsed=4379s  replay_steps=5,437  trades=0  events=18,253
+[2026-09-14T22:33:45.574044+00:00] progress: elapsed=4395s  replay_steps=5,451  trades=0  events=18,271
+[2026-09-14T22:34:01.039968+00:00] progress: elapsed=4410s  replay_steps=5,465  trades=0  events=18,348
+[2026-09-14T22:34:16.150304+00:00] progress: elapsed=4425s  replay_steps=5,479  trades=0  events=18,411
+[2026-09-14T22:34:31.999528+00:00] progress: elapsed=4441s  replay_steps=5,488  trades=0  events=18,444
+[2026-09-14T22:34:48.001646+00:00] progress: elapsed=4457s  replay_steps=5,499  trades=0  events=18,511
+[2026-09-14T22:35:03.009373+00:00] progress: elapsed=4472s  replay_steps=5,510  trades=0  events=18,625
+[2026-09-14T22:35:19.102752+00:00] progress: elapsed=4488s  replay_steps=5,522  trades=0  events=18,682
+[2026-09-14T22:35:35.595979+00:00] progress: elapsed=4505s  replay_steps=5,532  trades=0  events=18,700
+[2026-09-14T22:35:51.237646+00:00] progress: elapsed=4520s  replay_steps=5,544  trades=0  events=18,773
+[2026-09-14T22:36:07.513954+00:00] progress: elapsed=4536s  replay_steps=5,556  trades=0  events=18,777
+[2026-09-14T22:36:22.835294+00:00] progress: elapsed=4552s  replay_steps=5,568  trades=0  events=18,789
+[2026-09-14T22:36:39.809829+00:00] progress: elapsed=4569s  replay_steps=5,576  trades=0  events=18,799
+[2026-09-14T22:36:55.567845+00:00] progress: elapsed=4585s  replay_steps=5,584  trades=0  events=18,811
+[2026-09-14T22:37:11.389254+00:00] progress: elapsed=4600s  replay_steps=5,593  trades=0  events=18,827
+[2026-09-14T22:37:27.210739+00:00] progress: elapsed=4616s  replay_steps=5,601  trades=0  events=18,839
+[2026-09-14T22:37:43.111566+00:00] progress: elapsed=4632s  replay_steps=5,611  trades=0  events=18,862
+[2026-09-14T22:37:59.276519+00:00] progress: elapsed=4648s  replay_steps=5,621  trades=0  events=18,875
+[2026-09-14T22:38:14.498532+00:00] progress: elapsed=4663s  replay_steps=5,631  trades=0  events=18,889
+[2026-09-14T22:38:32.380299+00:00] progress: elapsed=4681s  replay_steps=5,641  trades=0  events=18,904
+[2026-09-14T22:38:47.808830+00:00] progress: elapsed=4697s  replay_steps=5,650  trades=0  events=18,957
+[2026-09-14T22:39:05.110462+00:00] progress: elapsed=4714s  replay_steps=5,659  trades=0  events=18,980
+[2026-09-14T22:39:20.495427+00:00] progress: elapsed=4729s  replay_steps=5,671  trades=0  events=19,002
+[2026-09-14T22:39:35.855613+00:00] progress: elapsed=4745s  replay_steps=5,684  trades=0  events=19,010
+[2026-09-14T22:39:51.754745+00:00] progress: elapsed=4761s  replay_steps=5,697  trades=0  events=19,084
+[2026-09-14T22:40:07.890858+00:00] progress: elapsed=4777s  replay_steps=5,711  trades=0  events=19,144
+[2026-09-14T22:40:22.990803+00:00] progress: elapsed=4792s  replay_steps=5,725  trades=0  events=19,197
+[2026-09-14T22:40:38.341371+00:00] progress: elapsed=4807s  replay_steps=5,738  trades=0  events=19,263
+[2026-09-14T22:40:53.935197+00:00] progress: elapsed=4823s  replay_steps=5,752  trades=0  events=19,291
+[2026-09-14T22:41:09.820564+00:00] progress: elapsed=4839s  replay_steps=5,763  trades=0  events=19,307
+[2026-09-14T22:41:26.415707+00:00] progress: elapsed=4855s  replay_steps=5,772  trades=0  events=19,314
+[2026-09-14T22:41:42.697497+00:00] progress: elapsed=4872s  replay_steps=5,784  trades=0  events=19,320
+[2026-09-14T22:41:58.284216+00:00] progress: elapsed=4887s  replay_steps=5,796  trades=0  events=19,382
+[2026-09-14T22:42:13.904780+00:00] progress: elapsed=4903s  replay_steps=5,805  trades=0  events=19,402
+[2026-09-14T22:42:29.064133+00:00] progress: elapsed=4918s  replay_steps=5,816  trades=0  events=19,402
+[2026-09-14T22:42:44.692435+00:00] progress: elapsed=4934s  replay_steps=5,829  trades=0  events=19,411
+[2026-09-14T22:43:00.964815+00:00] progress: elapsed=4950s  replay_steps=5,842  trades=0  events=19,418
+[2026-09-14T22:43:17.273642+00:00] progress: elapsed=4966s  replay_steps=5,852  trades=0  events=19,436
+[2026-09-14T22:43:32.494478+00:00] progress: elapsed=4981s  replay_steps=5,864  trades=0  events=19,473
+[2026-09-14T22:43:47.520851+00:00] progress: elapsed=4996s  replay_steps=5,876  trades=0  events=19,561
+[2026-09-14T22:44:03.316881+00:00] progress: elapsed=5012s  replay_steps=5,887  trades=0  events=19,597
+[2026-09-14T22:44:19.146121+00:00] progress: elapsed=5028s  replay_steps=5,900  trades=0  events=19,641
+[2026-09-14T22:44:34.530910+00:00] progress: elapsed=5043s  replay_steps=5,914  trades=0  events=19,670
+[2026-09-14T22:44:49.525945+00:00] progress: elapsed=5058s  replay_steps=5,926  trades=0  events=19,725
+[2026-09-14T22:45:05.639763+00:00] progress: elapsed=5075s  replay_steps=5,937  trades=0  events=19,785
+[2026-09-14T22:45:21.462269+00:00] progress: elapsed=5090s  replay_steps=5,948  trades=0  events=19,831
+[2026-09-14T22:45:36.980609+00:00] progress: elapsed=5106s  replay_steps=5,959  trades=0  events=19,845
+[2026-09-14T22:45:52.521042+00:00] progress: elapsed=5121s  replay_steps=5,966  trades=0  events=19,877
+[2026-09-14T22:46:08.068325+00:00] progress: elapsed=5137s  replay_steps=5,977  trades=0  events=19,927
+[2026-09-14T22:46:24.357815+00:00] progress: elapsed=5153s  replay_steps=5,990  trades=0  events=19,959
+[2026-09-14T22:46:40.423762+00:00] progress: elapsed=5169s  replay_steps=6,003  trades=0  events=20,007
+[2026-09-14T22:46:56.878775+00:00] progress: elapsed=5186s  replay_steps=6,011  trades=0  events=20,026
+[2026-09-14T22:47:12.969651+00:00] progress: elapsed=5202s  replay_steps=6,022  trades=0  events=20,041
+[2026-09-14T22:47:28.603046+00:00] progress: elapsed=5218s  replay_steps=6,034  trades=0  events=20,072
+[2026-09-14T22:47:43.929958+00:00] progress: elapsed=5233s  replay_steps=6,046  trades=0  events=20,096
+[2026-09-14T22:47:58.931372+00:00] progress: elapsed=5248s  replay_steps=6,058  trades=0  events=20,117
+[2026-09-14T22:48:14.906439+00:00] progress: elapsed=5264s  replay_steps=6,071  trades=0  events=20,128
+[2026-09-14T22:48:30.003941+00:00] progress: elapsed=5279s  replay_steps=6,081  trades=0  events=20,183
+[2026-09-14T22:48:46.367778+00:00] progress: elapsed=5295s  replay_steps=6,092  trades=0  events=20,224
+[2026-09-14T22:49:02.697621+00:00] progress: elapsed=5312s  replay_steps=6,105  trades=0  events=20,263
+[2026-09-14T22:49:18.300053+00:00] progress: elapsed=5327s  replay_steps=6,117  trades=0  events=20,318
+[2026-09-14T22:49:34.141544+00:00] progress: elapsed=5343s  replay_steps=6,125  trades=0  events=20,333
+[2026-09-14T22:49:49.477615+00:00] progress: elapsed=5358s  replay_steps=6,131  trades=0  events=20,350
+[2026-09-14T22:50:05.655283+00:00] progress: elapsed=5375s  replay_steps=6,143  trades=0  events=20,358
+[2026-09-14T22:50:20.874815+00:00] progress: elapsed=5390s  replay_steps=6,154  trades=0  events=20,358
+[2026-09-14T22:50:36.740986+00:00] progress: elapsed=5406s  replay_steps=6,166  trades=0  events=20,365
+[2026-09-14T22:50:52.199095+00:00] progress: elapsed=5421s  replay_steps=6,177  trades=0  events=20,398
+[2026-09-14T22:51:08.501273+00:00] progress: elapsed=5437s  replay_steps=6,188  trades=0  events=20,399
+[2026-09-14T22:51:23.684824+00:00] progress: elapsed=5453s  replay_steps=6,197  trades=0  events=20,433
+[2026-09-14T22:51:39.634974+00:00] progress: elapsed=5469s  replay_steps=6,206  trades=0  events=20,477
+[2026-09-14T22:51:56.050576+00:00] progress: elapsed=5485s  replay_steps=6,218  trades=0  events=20,494
+[2026-09-14T22:52:12.137003+00:00] progress: elapsed=5501s  replay_steps=6,229  trades=0  events=20,498
+[2026-09-14T22:52:27.342312+00:00] progress: elapsed=5516s  replay_steps=6,240  trades=0  events=20,503
+[2026-09-14T22:52:43.468935+00:00] progress: elapsed=5532s  replay_steps=6,249  trades=0  events=20,511
+[2026-09-14T22:52:59.479556+00:00] progress: elapsed=5548s  replay_steps=6,257  trades=0  events=20,517
+[2026-09-14T22:53:15.185328+00:00] progress: elapsed=5564s  replay_steps=6,266  trades=0  events=20,522
+[2026-09-14T22:53:30.885160+00:00] progress: elapsed=5580s  replay_steps=6,276  trades=0  events=20,522
+[2026-09-14T22:53:46.685387+00:00] progress: elapsed=5596s  replay_steps=6,287  trades=0  events=20,534
+[2026-09-14T22:54:02.538572+00:00] progress: elapsed=5612s  replay_steps=6,298  trades=0  events=20,557
+[2026-09-14T22:54:17.857975+00:00] progress: elapsed=5627s  replay_steps=6,309  trades=0  events=20,579
+[2026-09-14T22:54:34.024371+00:00] progress: elapsed=5643s  replay_steps=6,320  trades=0  events=20,619
+[2026-09-14T22:54:50.626908+00:00] progress: elapsed=5660s  replay_steps=6,329  trades=0  events=20,633
+[2026-09-14T22:55:06.803605+00:00] progress: elapsed=5676s  replay_steps=6,340  trades=0  events=20,656
+[2026-09-14T22:55:22.381925+00:00] progress: elapsed=5691s  replay_steps=6,351  trades=0  events=20,710
+[2026-09-14T22:55:38.164554+00:00] progress: elapsed=5707s  replay_steps=6,360  trades=0  events=20,727
+[2026-09-14T22:55:54.028475+00:00] progress: elapsed=5723s  replay_steps=6,371  trades=0  events=20,761
+[2026-09-14T22:56:09.868097+00:00] progress: elapsed=5739s  replay_steps=6,382  trades=0  events=20,795
+[2026-09-14T22:56:25.304836+00:00] progress: elapsed=5754s  replay_steps=6,393  trades=0  events=20,816
+[2026-09-14T22:56:40.408566+00:00] progress: elapsed=5769s  replay_steps=6,403  trades=0  events=20,890
+[2026-09-14T22:56:56.109295+00:00] progress: elapsed=5785s  replay_steps=6,414  trades=0  events=20,956
+[2026-09-14T22:57:12.080435+00:00] progress: elapsed=5801s  replay_steps=6,425  trades=0  events=20,979
+[2026-09-14T22:57:28.221080+00:00] progress: elapsed=5817s  replay_steps=6,434  trades=0  events=21,071
+[2026-09-14T22:57:43.226950+00:00] progress: elapsed=5832s  replay_steps=6,442  trades=0  events=21,124
+[2026-09-14T22:57:58.290820+00:00] progress: elapsed=5847s  replay_steps=6,452  trades=0  events=21,136
+[2026-09-14T22:58:14.622599+00:00] progress: elapsed=5864s  replay_steps=6,463  trades=0  events=21,155
+[2026-09-14T22:58:29.992513+00:00] progress: elapsed=5879s  replay_steps=6,472  trades=0  events=21,191
+[2026-09-14T22:58:46.260905+00:00] progress: elapsed=5895s  replay_steps=6,480  trades=0  events=21,214
+[2026-09-14T22:59:01.668357+00:00] progress: elapsed=5911s  replay_steps=6,489  trades=0  events=21,303
+[2026-09-14T22:59:17.507312+00:00] progress: elapsed=5926s  replay_steps=6,497  trades=0  events=21,360
+[2026-09-14T22:59:33.615121+00:00] progress: elapsed=5943s  replay_steps=6,505  trades=0  events=21,424
+[2026-09-14T22:59:49.678944+00:00] progress: elapsed=5959s  replay_steps=6,515  trades=0  events=21,461
+[2026-09-14T23:00:05.743689+00:00] progress: elapsed=5975s  replay_steps=6,524  trades=0  events=21,517
+[2026-09-14T23:00:21.773747+00:00] progress: elapsed=5991s  replay_steps=6,534  trades=0  events=21,577
+[2026-09-14T23:00:37.575073+00:00] progress: elapsed=6007s  replay_steps=6,544  trades=0  events=21,592
+[2026-09-14T23:00:53.523463+00:00] progress: elapsed=6022s  replay_steps=6,554  trades=0  events=21,599
+[2026-09-14T23:01:10.184360+00:00] progress: elapsed=6039s  replay_steps=6,564  trades=0  events=21,630
+[2026-09-14T23:01:25.555480+00:00] progress: elapsed=6055s  replay_steps=6,571  trades=0  events=21,641
+[2026-09-14T23:01:41.121416+00:00] progress: elapsed=6070s  replay_steps=6,580  trades=0  events=21,702
+[2026-09-14T23:01:57.384959+00:00] progress: elapsed=6086s  replay_steps=6,588  trades=0  events=21,745
+[2026-09-14T23:02:13.075872+00:00] progress: elapsed=6102s  replay_steps=6,599  trades=0  events=21,782
+[2026-09-14T23:02:28.730260+00:00] progress: elapsed=6118s  replay_steps=6,608  trades=0  events=21,829
+[2026-09-14T23:02:43.793002+00:00] progress: elapsed=6133s  replay_steps=6,616  trades=0  events=21,902
+[2026-09-14T23:03:00.283895+00:00] progress: elapsed=6149s  replay_steps=6,626  trades=0  events=21,908
+[2026-09-14T23:03:15.539325+00:00] progress: elapsed=6165s  replay_steps=6,634  trades=0  events=21,919
+[2026-09-14T23:03:31.259313+00:00] progress: elapsed=6180s  replay_steps=6,645  trades=0  events=21,931
+[2026-09-14T23:03:47.092241+00:00] progress: elapsed=6196s  replay_steps=6,655  trades=0  events=21,948
+[2026-09-14T23:04:02.687505+00:00] progress: elapsed=6212s  replay_steps=6,664  trades=0  events=21,973
+[2026-09-14T23:04:18.217920+00:00] progress: elapsed=6227s  replay_steps=6,673  trades=0  events=21,987
+[2026-09-14T23:04:34.147052+00:00] progress: elapsed=6243s  replay_steps=6,682  trades=0  events=21,987
+[2026-09-14T23:04:49.757571+00:00] progress: elapsed=6259s  replay_steps=6,693  trades=0  events=22,008
+[2026-09-14T23:05:05.950423+00:00] progress: elapsed=6275s  replay_steps=6,704  trades=0  events=22,036
+[2026-09-14T23:05:21.756448+00:00] progress: elapsed=6291s  replay_steps=6,714  trades=0  events=22,125
+[2026-09-14T23:05:37.252267+00:00] progress: elapsed=6306s  replay_steps=6,723  trades=0  events=22,146
+[2026-09-14T23:05:53.829061+00:00] progress: elapsed=6323s  replay_steps=6,733  trades=0  events=22,209
+[2026-09-14T23:06:09.181387+00:00] progress: elapsed=6338s  replay_steps=6,743  trades=0  events=22,245
+[2026-09-14T23:06:25.789768+00:00] progress: elapsed=6355s  replay_steps=6,753  trades=0  events=22,311
+[2026-09-14T23:06:41.024983+00:00] progress: elapsed=6370s  replay_steps=6,763  trades=0  events=22,387
+[2026-09-14T23:06:56.666722+00:00] progress: elapsed=6386s  replay_steps=6,773  trades=0  events=22,460
+[2026-09-14T23:07:13.116104+00:00] progress: elapsed=6402s  replay_steps=6,783  trades=0  events=22,483
+[2026-09-14T23:07:29.342433+00:00] progress: elapsed=6418s  replay_steps=6,789  trades=0  events=22,489
+[2026-09-14T23:07:47.698073+00:00] progress: elapsed=6437s  replay_steps=6,794  trades=0  events=22,522
+[2026-09-14T23:08:04.098942+00:00] progress: elapsed=6453s  replay_steps=6,800  trades=0  events=22,536
+[2026-09-14T23:08:19.332376+00:00] progress: elapsed=6468s  replay_steps=6,807  trades=0  events=22,571
+[2026-09-14T23:08:34.467659+00:00] progress: elapsed=6483s  replay_steps=6,815  trades=0  events=22,587
+[2026-09-14T23:08:51.730059+00:00] progress: elapsed=6501s  replay_steps=6,825  trades=0  events=22,619
+[2026-09-14T23:09:08.802136+00:00] progress: elapsed=6518s  replay_steps=6,830  trades=0  events=22,663
+[2026-09-14T23:09:24.685781+00:00] progress: elapsed=6534s  replay_steps=6,839  trades=0  events=22,679
+[2026-09-14T23:09:42.299906+00:00] progress: elapsed=6551s  replay_steps=6,849  trades=0  events=22,755
+[2026-09-14T23:09:58.707379+00:00] progress: elapsed=6568s  replay_steps=6,860  trades=0  events=22,890
+[2026-09-14T23:10:15.530276+00:00] progress: elapsed=6584s  replay_steps=6,867  trades=0  events=22,919
+[2026-09-14T23:10:31.147697+00:00] progress: elapsed=6600s  replay_steps=6,874  trades=0  events=22,932
+[2026-09-14T23:10:46.628912+00:00] progress: elapsed=6616s  replay_steps=6,881  trades=0  events=22,937
+[2026-09-14T23:11:02.491693+00:00] progress: elapsed=6631s  replay_steps=6,888  trades=0  events=22,947
+[2026-09-14T23:11:19.643232+00:00] progress: elapsed=6649s  replay_steps=6,894  trades=0  events=22,985
+[2026-09-14T23:11:34.895937+00:00] progress: elapsed=6664s  replay_steps=6,901  trades=0  events=23,017
+[2026-09-14T23:11:51.777401+00:00] progress: elapsed=6681s  replay_steps=6,908  trades=0  events=23,043
+[2026-09-14T23:12:08.927554+00:00] progress: elapsed=6698s  replay_steps=6,916  trades=0  events=23,043
+[2026-09-14T23:12:24.777200+00:00] progress: elapsed=6714s  replay_steps=6,924  trades=0  events=23,055
+[2026-09-14T23:12:41.616417+00:00] progress: elapsed=6731s  replay_steps=6,931  trades=0  events=23,055
+[2026-09-14T23:12:56.739765+00:00] progress: elapsed=6746s  replay_steps=6,938  trades=0  events=23,059
+[2026-09-14T23:13:12.029458+00:00] progress: elapsed=6761s  replay_steps=6,946  trades=0  events=23,063
+[2026-09-14T23:13:27.811614+00:00] progress: elapsed=6777s  replay_steps=6,954  trades=0  events=23,063
+[2026-09-14T23:13:43.313468+00:00] progress: elapsed=6792s  replay_steps=6,962  trades=0  events=23,063
+[2026-09-14T23:13:58.562393+00:00] progress: elapsed=6808s  replay_steps=6,969  trades=0  events=23,084
+[2026-09-14T23:14:14.421382+00:00] progress: elapsed=6823s  replay_steps=6,977  trades=0  events=23,100
+[2026-09-14T23:14:30.499642+00:00] progress: elapsed=6839s  replay_steps=6,984  trades=0  events=23,116
+[2026-09-14T23:14:47.321041+00:00] progress: elapsed=6856s  replay_steps=6,993  trades=0  events=23,143
+[2026-09-14T23:15:03.963625+00:00] progress: elapsed=6873s  replay_steps=7,001  trades=0  events=23,151
+[2026-09-14T23:15:19.572742+00:00] progress: elapsed=6889s  replay_steps=7,008  trades=0  events=23,155
+[2026-09-14T23:15:35.858618+00:00] progress: elapsed=6905s  replay_steps=7,016  trades=0  events=23,217
+[2026-09-14T23:15:51.482861+00:00] progress: elapsed=6920s  replay_steps=7,024  trades=0  events=23,241
+[2026-09-14T23:16:06.907926+00:00] progress: elapsed=6936s  replay_steps=7,032  trades=0  events=23,241
+[2026-09-14T23:16:23.182737+00:00] progress: elapsed=6952s  replay_steps=7,039  trades=0  events=23,326
+[2026-09-14T23:16:38.182184+00:00] progress: elapsed=6967s  replay_steps=7,047  trades=0  events=23,341
+[2026-09-14T23:16:53.429590+00:00] progress: elapsed=6982s  replay_steps=7,055  trades=0  events=23,346
+[2026-09-14T23:17:10.241192+00:00] progress: elapsed=6999s  replay_steps=7,062  trades=0  events=23,366
+[2026-09-14T23:17:25.950918+00:00] progress: elapsed=7015s  replay_steps=7,070  trades=0  events=23,418
+[2026-09-14T23:17:42.642239+00:00] progress: elapsed=7032s  replay_steps=7,078  trades=0  events=23,432
+[2026-09-14T23:17:58.538604+00:00] progress: elapsed=7048s  replay_steps=7,085  trades=0  events=23,488
+[2026-09-14T23:18:15.424990+00:00] progress: elapsed=7064s  replay_steps=7,093  trades=0  events=23,531
+[2026-09-14T23:18:30.507135+00:00] progress: elapsed=7079s  replay_steps=7,100  trades=0  events=23,549
+[2026-09-14T23:18:46.732617+00:00] progress: elapsed=7096s  replay_steps=7,109  trades=0  events=23,556
+[2026-09-14T23:19:02.115624+00:00] progress: elapsed=7111s  replay_steps=7,117  trades=0  events=23,587
+[2026-09-14T23:19:19.151912+00:00] progress: elapsed=7128s  replay_steps=7,125  trades=0  events=23,618
+[2026-09-14T23:19:35.525965+00:00] progress: elapsed=7144s  replay_steps=7,133  trades=0  events=23,635
+[2026-09-14T23:19:51.338940+00:00] progress: elapsed=7160s  replay_steps=7,141  trades=0  events=23,635
+[2026-09-14T23:20:07.917686+00:00] progress: elapsed=7177s  replay_steps=7,149  trades=0  events=23,635
+[2026-09-14T23:20:23.623612+00:00] progress: elapsed=7193s  replay_steps=7,156  trades=0  events=23,642
+[2026-09-14T23:20:38.635395+00:00] progress: elapsed=7208s  replay_steps=7,163  trades=0  events=23,642
+[2026-09-14T23:20:55.048975+00:00] progress: elapsed=7224s  replay_steps=7,171  trades=0  events=23,648
+[2026-09-14T23:21:12.012632+00:00] progress: elapsed=7241s  replay_steps=7,178  trades=0  events=23,652
+[2026-09-14T23:21:27.823659+00:00] progress: elapsed=7257s  replay_steps=7,186  trades=0  events=23,696
+[2026-09-14T23:21:43.888101+00:00] progress: elapsed=7273s  replay_steps=7,193  trades=0  events=23,724
+[2026-09-14T23:22:00.068764+00:00] progress: elapsed=7289s  replay_steps=7,200  trades=0  events=23,732
+[2026-09-14T23:22:15.531090+00:00] progress: elapsed=7304s  replay_steps=7,207  trades=0  events=23,752
+[2026-09-14T23:22:31.993366+00:00] progress: elapsed=7321s  replay_steps=7,214  trades=0  events=23,763
+[2026-09-14T23:22:48.723271+00:00] progress: elapsed=7338s  replay_steps=7,222  trades=0  events=23,784
+[2026-09-14T23:23:04.569638+00:00] progress: elapsed=7354s  replay_steps=7,229  trades=0  events=23,846
+[2026-09-14T23:23:20.141781+00:00] progress: elapsed=7369s  replay_steps=7,234  trades=0  events=23,861
+[2026-09-14T23:23:35.235699+00:00] progress: elapsed=7384s  replay_steps=7,241  trades=0  events=23,919
+[2026-09-14T23:23:50.431056+00:00] progress: elapsed=7399s  replay_steps=7,247  trades=0  events=23,932
+[2026-09-14T23:24:07.157524+00:00] progress: elapsed=7416s  replay_steps=7,255  trades=0  events=23,958
+[2026-09-14T23:24:23.546893+00:00] progress: elapsed=7433s  replay_steps=7,263  trades=0  events=23,999
+[2026-09-14T23:24:39.977187+00:00] progress: elapsed=7449s  replay_steps=7,270  trades=0  events=24,006
+[2026-09-14T23:24:55.640974+00:00] progress: elapsed=7465s  replay_steps=7,277  trades=0  events=24,026
+[2026-09-14T23:25:12.249824+00:00] progress: elapsed=7481s  replay_steps=7,284  trades=0  events=24,058
+[2026-09-14T23:25:28.885526+00:00] progress: elapsed=7498s  replay_steps=7,292  trades=0  events=24,076
+[2026-09-14T23:25:45.224704+00:00] progress: elapsed=7514s  replay_steps=7,299  trades=0  events=24,106
+[2026-09-14T23:26:01.480645+00:00] progress: elapsed=7530s  replay_steps=7,307  trades=0  events=24,113
+[2026-09-14T23:26:17.450590+00:00] progress: elapsed=7546s  replay_steps=7,314  trades=0  events=24,140
+[2026-09-14T23:26:32.565064+00:00] progress: elapsed=7562s  replay_steps=7,320  trades=0  events=24,202
+[2026-09-14T23:26:49.508464+00:00] progress: elapsed=7578s  replay_steps=7,328  trades=0  events=24,242
+[2026-09-14T23:27:05.322488+00:00] progress: elapsed=7594s  replay_steps=7,334  trades=0  events=24,253
+[2026-09-14T23:27:22.108587+00:00] progress: elapsed=7611s  replay_steps=7,342  trades=0  events=24,310
+[2026-09-14T23:27:38.537210+00:00] progress: elapsed=7628s  replay_steps=7,350  trades=0  events=24,338
+[2026-09-14T23:27:55.486733+00:00] progress: elapsed=7644s  replay_steps=7,357  trades=0  events=24,377
+[2026-09-14T23:28:11.473720+00:00] progress: elapsed=7660s  replay_steps=7,364  trades=0  events=24,404
+[2026-09-14T23:28:27.948017+00:00] progress: elapsed=7677s  replay_steps=7,371  trades=0  events=24,417
+[2026-09-14T23:28:44.537645+00:00] progress: elapsed=7694s  replay_steps=7,378  trades=0  events=24,451
+[2026-09-14T23:29:01.119825+00:00] progress: elapsed=7710s  replay_steps=7,385  trades=0  events=24,481
+[2026-09-14T23:29:16.152025+00:00] progress: elapsed=7725s  replay_steps=7,391  trades=0  events=24,522
+[2026-09-14T23:29:31.637216+00:00] progress: elapsed=7741s  replay_steps=7,398  trades=0  events=24,589
+[2026-09-14T23:29:47.420182+00:00] progress: elapsed=7756s  replay_steps=7,405  trades=0  events=24,622
+[2026-09-14T23:30:03.582969+00:00] progress: elapsed=7773s  replay_steps=7,412  trades=0  events=24,640
+[2026-09-14T23:30:18.893621+00:00] progress: elapsed=7788s  replay_steps=7,419  trades=0  events=24,646
+[2026-09-14T23:30:35.727696+00:00] progress: elapsed=7805s  replay_steps=7,427  trades=0  events=24,658
+[2026-09-14T23:30:51.456987+00:00] progress: elapsed=7820s  replay_steps=7,434  trades=0  events=24,668
+[2026-09-14T23:31:08.284405+00:00] progress: elapsed=7837s  replay_steps=7,439  trades=0  events=24,711
+[2026-09-14T23:31:24.107472+00:00] progress: elapsed=7853s  replay_steps=7,443  trades=0  events=24,725
+[2026-09-14T23:31:40.821002+00:00] progress: elapsed=7870s  replay_steps=7,450  trades=0  events=24,730
+[2026-09-14T23:31:56.136277+00:00] progress: elapsed=7885s  replay_steps=7,457  trades=0  events=24,730
+[2026-09-14T23:32:12.798181+00:00] progress: elapsed=7902s  replay_steps=7,464  trades=0  events=24,734
+[2026-09-14T23:32:28.692174+00:00] progress: elapsed=7918s  replay_steps=7,472  trades=0  events=24,738
+[2026-09-14T23:32:43.728967+00:00] progress: elapsed=7933s  replay_steps=7,478  trades=0  events=24,750
+[2026-09-14T23:32:58.784218+00:00] progress: elapsed=7948s  replay_steps=7,485  trades=0  events=24,750
+[2026-09-14T23:33:15.576418+00:00] progress: elapsed=7965s  replay_steps=7,493  trades=0  events=24,754
+[2026-09-14T23:33:32.258811+00:00] progress: elapsed=7981s  replay_steps=7,500  trades=0  events=24,764
+[2026-09-14T23:33:49.010398+00:00] progress: elapsed=7998s  replay_steps=7,508  trades=0  events=24,775
+[2026-09-14T23:34:04.099396+00:00] progress: elapsed=8013s  replay_steps=7,515  trades=0  events=24,775
+[2026-09-14T23:34:20.802301+00:00] progress: elapsed=8030s  replay_steps=7,523  trades=0  events=24,775
+[2026-09-14T23:34:36.747287+00:00] progress: elapsed=8046s  replay_steps=7,530  trades=0  events=24,775
+[2026-09-14T23:34:52.745811+00:00] progress: elapsed=8062s  replay_steps=7,537  trades=0  events=24,775
+[2026-09-14T23:35:07.881881+00:00] progress: elapsed=8077s  replay_steps=7,544  trades=0  events=24,819
+[2026-09-14T23:35:24.040468+00:00] progress: elapsed=8093s  replay_steps=7,551  trades=0  events=24,819
+[2026-09-14T23:35:41.299720+00:00] progress: elapsed=8110s  replay_steps=7,558  trades=0  events=24,819
+[2026-09-14T23:35:56.618246+00:00] progress: elapsed=8126s  replay_steps=7,563  trades=0  events=24,823
+[2026-09-14T23:36:11.841776+00:00] progress: elapsed=8141s  replay_steps=7,569  trades=0  events=24,828
+[2026-09-14T23:36:28.813543+00:00] progress: elapsed=8158s  replay_steps=7,576  trades=0  events=24,836
+[2026-09-14T23:36:45.797919+00:00] progress: elapsed=8175s  replay_steps=7,583  trades=0  events=24,843
+[2026-09-14T23:37:02.005469+00:00] progress: elapsed=8191s  replay_steps=7,589  trades=0  events=24,880
+[2026-09-14T23:37:17.785172+00:00] progress: elapsed=8207s  replay_steps=7,595  trades=0  events=24,885
+[2026-09-14T23:37:34.659963+00:00] progress: elapsed=8224s  replay_steps=7,601  trades=0  events=24,910
+[2026-09-14T23:37:51.550552+00:00] progress: elapsed=8241s  replay_steps=7,608  trades=0  events=24,927
+[2026-09-14T23:38:06.603360+00:00] progress: elapsed=8256s  replay_steps=7,614  trades=0  events=24,948
+[2026-09-14T23:38:22.887583+00:00] progress: elapsed=8272s  replay_steps=7,621  trades=0  events=24,963
+[2026-09-14T23:38:38.860657+00:00] progress: elapsed=8288s  replay_steps=7,627  trades=0  events=24,979
+[2026-09-14T23:38:54.286935+00:00] progress: elapsed=8303s  replay_steps=7,633  trades=0  events=24,984
+[2026-09-14T23:39:11.480102+00:00] progress: elapsed=8320s  replay_steps=7,640  trades=0  events=24,984
+[2026-09-14T23:39:26.693940+00:00] progress: elapsed=8336s  replay_steps=7,647  trades=0  events=24,984
+[2026-09-14T23:39:43.955378+00:00] progress: elapsed=8353s  replay_steps=7,654  trades=0  events=25,013
+[2026-09-14T23:39:59.885763+00:00] progress: elapsed=8369s  replay_steps=7,660  trades=0  events=25,013
+[2026-09-14T23:40:15.468265+00:00] progress: elapsed=8384s  replay_steps=7,666  trades=0  events=25,017
+[2026-09-14T23:40:34.084351+00:00] progress: elapsed=8403s  replay_steps=7,673  trades=0  events=25,036
+[2026-09-14T23:40:50.434166+00:00] progress: elapsed=8419s  replay_steps=7,678  trades=0  events=25,076
+[2026-09-14T23:41:06.401274+00:00] progress: elapsed=8435s  replay_steps=7,684  trades=0  events=25,107
+[2026-09-14T23:41:23.372946+00:00] progress: elapsed=8452s  replay_steps=7,690  trades=0  events=25,126
+[2026-09-14T23:41:39.298570+00:00] progress: elapsed=8468s  replay_steps=7,697  trades=0  events=25,130
+[2026-09-14T23:41:54.912371+00:00] progress: elapsed=8484s  replay_steps=7,704  trades=0  events=25,141
+[2026-09-14T23:42:10.910857+00:00] progress: elapsed=8500s  replay_steps=7,710  trades=0  events=25,141
+[2026-09-14T23:42:26.609705+00:00] progress: elapsed=8516s  replay_steps=7,717  trades=0  events=25,167
+[2026-09-14T23:42:41.964472+00:00] progress: elapsed=8531s  replay_steps=7,724  trades=0  events=25,169
+[2026-09-14T23:42:58.118019+00:00] progress: elapsed=8547s  replay_steps=7,731  trades=0  events=25,221
+[2026-09-14T23:43:13.589209+00:00] progress: elapsed=8563s  replay_steps=7,736  trades=0  events=25,228
+[2026-09-14T23:43:30.705905+00:00] progress: elapsed=8580s  replay_steps=7,742  trades=0  events=25,242
+[2026-09-14T23:43:46.602228+00:00] progress: elapsed=8596s  replay_steps=7,748  trades=0  events=25,254
+[2026-09-14T23:44:03.888953+00:00] progress: elapsed=8613s  replay_steps=7,755  trades=0  events=25,270
+[2026-09-14T23:44:20.624767+00:00] progress: elapsed=8630s  replay_steps=7,762  trades=0  events=25,294
+[2026-09-14T23:44:35.649882+00:00] progress: elapsed=8645s  replay_steps=7,768  trades=0  events=25,312
+[2026-09-14T23:44:52.790786+00:00] progress: elapsed=8662s  replay_steps=7,775  trades=0  events=25,314
+[2026-09-14T23:45:07.824534+00:00] progress: elapsed=8677s  replay_steps=7,782  trades=0  events=25,325
+[2026-09-14T23:45:25.647217+00:00] progress: elapsed=8695s  replay_steps=7,789  trades=0  events=25,338
+[2026-09-14T23:45:42.994812+00:00] progress: elapsed=8712s  replay_steps=7,796  trades=0  events=25,350
+[2026-09-14T23:45:59.795697+00:00] progress: elapsed=8729s  replay_steps=7,803  trades=0  events=25,357
+[2026-09-14T23:46:14.982792+00:00] progress: elapsed=8744s  replay_steps=7,808  trades=0  events=25,427
+[2026-09-14T23:46:31.767668+00:00] progress: elapsed=8761s  replay_steps=7,815  trades=0  events=25,492
+[2026-09-14T23:46:47.952000+00:00] progress: elapsed=8777s  replay_steps=7,822  trades=0  events=25,518
+[2026-09-14T23:47:05.311728+00:00] progress: elapsed=8794s  replay_steps=7,828  trades=0  events=25,563
+[2026-09-14T23:47:21.710787+00:00] progress: elapsed=8811s  replay_steps=7,835  trades=0  events=25,605
+[2026-09-14T23:47:38.128104+00:00] progress: elapsed=8827s  replay_steps=7,842  trades=0  events=25,625
+[2026-09-14T23:47:54.901805+00:00] progress: elapsed=8844s  replay_steps=7,848  trades=0  events=25,661
+[2026-09-14T23:48:12.229263+00:00] progress: elapsed=8861s  replay_steps=7,854  trades=0  events=25,713
+[2026-09-14T23:48:27.279838+00:00] progress: elapsed=8876s  replay_steps=7,860  trades=0  events=25,754
+[2026-09-14T23:48:42.525065+00:00] progress: elapsed=8891s  replay_steps=7,866  trades=0  events=25,830
+[2026-09-14T23:48:57.652881+00:00] progress: elapsed=8907s  replay_steps=7,872  trades=0  events=25,882
+[2026-09-14T23:49:14.155499+00:00] progress: elapsed=8923s  replay_steps=7,879  trades=0  events=25,930
+[2026-09-14T23:49:30.652951+00:00] progress: elapsed=8940s  replay_steps=7,885  trades=0  events=25,943
+[2026-09-14T23:49:48.009833+00:00] progress: elapsed=8957s  replay_steps=7,892  trades=0  events=25,964
+[2026-09-14T23:50:05.790849+00:00] progress: elapsed=8975s  replay_steps=7,898  trades=0  events=25,990
+[2026-09-14T23:50:20.791683+00:00] progress: elapsed=8990s  replay_steps=7,904  trades=0  events=26,005
+[2026-09-14T23:50:37.032870+00:00] progress: elapsed=9006s  replay_steps=7,911  trades=0  events=26,073
+[2026-09-14T23:50:52.516095+00:00] progress: elapsed=9021s  replay_steps=7,917  trades=0  events=26,084
+[2026-09-14T23:51:10.168289+00:00] progress: elapsed=9039s  replay_steps=7,922  trades=0  events=26,107
+[2026-09-14T23:51:27.167547+00:00] progress: elapsed=9056s  replay_steps=7,929  trades=0  events=26,122
+[2026-09-14T23:51:43.487956+00:00] progress: elapsed=9072s  replay_steps=7,936  trades=0  events=26,153
+[2026-09-14T23:51:59.251029+00:00] progress: elapsed=9088s  replay_steps=7,943  trades=0  events=26,181
+[2026-09-14T23:52:16.178625+00:00] progress: elapsed=9105s  replay_steps=7,949  trades=0  events=26,213
+[2026-09-14T23:52:31.501533+00:00] progress: elapsed=9120s  replay_steps=7,955  trades=0  events=26,220
+[2026-09-14T23:52:48.755541+00:00] progress: elapsed=9138s  replay_steps=7,962  trades=0  events=26,238
+[2026-09-14T23:53:05.629420+00:00] progress: elapsed=9155s  replay_steps=7,969  trades=0  events=26,263
+[2026-09-14T23:53:21.488770+00:00] progress: elapsed=9170s  replay_steps=7,976  trades=0  events=26,276
+[2026-09-14T23:53:37.638741+00:00] progress: elapsed=9187s  replay_steps=7,982  trades=0  events=26,278
+[2026-09-14T23:53:53.746021+00:00] progress: elapsed=9203s  replay_steps=7,989  trades=0  events=26,287
+[2026-09-14T23:54:11.082949+00:00] progress: elapsed=9220s  replay_steps=7,995  trades=0  events=26,321
+[2026-09-14T23:54:28.246704+00:00] progress: elapsed=9237s  replay_steps=8,002  trades=0  events=26,351
+[2026-09-14T23:54:45.113690+00:00] progress: elapsed=9254s  replay_steps=8,008  trades=0  events=26,380
+[2026-09-14T23:55:02.870385+00:00] progress: elapsed=9272s  replay_steps=8,015  trades=0  events=26,396
+[2026-09-14T23:55:19.092337+00:00] progress: elapsed=9288s  replay_steps=8,021  trades=0  events=26,402
+[2026-09-14T23:55:34.569324+00:00] progress: elapsed=9304s  replay_steps=8,027  trades=0  events=26,429
+[2026-09-14T23:55:49.683394+00:00] progress: elapsed=9319s  replay_steps=8,033  trades=0  events=26,433
+[2026-09-14T23:56:06.503890+00:00] progress: elapsed=9336s  replay_steps=8,039  trades=0  events=26,443
+[2026-09-14T23:56:21.889657+00:00] progress: elapsed=9351s  replay_steps=8,045  trades=0  events=26,469
+[2026-09-14T23:56:39.507599+00:00] progress: elapsed=9369s  replay_steps=8,052  trades=0  events=26,486
+[2026-09-14T23:56:56.115504+00:00] progress: elapsed=9385s  replay_steps=8,059  trades=0  events=26,495
+[2026-09-14T23:57:12.073577+00:00] progress: elapsed=9401s  replay_steps=8,065  trades=0  events=26,514
+[2026-09-14T23:57:29.658032+00:00] progress: elapsed=9419s  replay_steps=8,071  trades=0  events=26,572
+[2026-09-14T23:57:45.140960+00:00] progress: elapsed=9434s  replay_steps=8,077  trades=0  events=26,594
+[2026-09-14T23:58:01.590998+00:00] progress: elapsed=9451s  replay_steps=8,083  trades=0  events=26,602
+[2026-09-14T23:58:17.301899+00:00] progress: elapsed=9466s  replay_steps=8,089  trades=0  events=26,624
+[2026-09-14T23:58:32.615945+00:00] progress: elapsed=9482s  replay_steps=8,095  trades=0  events=26,630
+[2026-09-14T23:58:48.585956+00:00] progress: elapsed=9498s  replay_steps=8,102  trades=0  events=26,630
+[2026-09-14T23:59:05.522572+00:00] progress: elapsed=9515s  replay_steps=8,109  trades=0  events=26,650
+[2026-09-14T23:59:22.515203+00:00] progress: elapsed=9532s  replay_steps=8,116  trades=0  events=26,678
+[2026-09-14T23:59:38.216552+00:00] progress: elapsed=9547s  replay_steps=8,122  trades=0  events=26,695
+[2026-09-14T23:59:53.659966+00:00] progress: elapsed=9563s  replay_steps=8,128  trades=0  events=26,709
+[2026-09-15T00:00:09.774788+00:00] progress: elapsed=9579s  replay_steps=8,134  trades=0  events=26,736
+[2026-09-15T00:00:25.037996+00:00] progress: elapsed=9594s  replay_steps=8,139  trades=0  events=26,759
+[2026-09-15T00:00:42.765866+00:00] progress: elapsed=9612s  replay_steps=8,146  trades=0  events=26,795
+[2026-09-15T00:00:58.558209+00:00] progress: elapsed=9628s  replay_steps=8,152  trades=0  events=26,803
+[2026-09-15T00:01:16.031965+00:00] progress: elapsed=9645s  replay_steps=8,155  trades=0  events=26,810
+[2026-09-15T00:01:32.476949+00:00] progress: elapsed=9662s  replay_steps=8,161  trades=0  events=26,892
+[2026-09-15T00:01:48.808686+00:00] progress: elapsed=9678s  replay_steps=8,167  trades=0  events=26,921
+[2026-09-15T00:02:05.984490+00:00] progress: elapsed=9695s  replay_steps=8,173  trades=0  events=26,937
+[2026-09-15T00:02:21.170970+00:00] progress: elapsed=9710s  replay_steps=8,179  trades=0  events=26,947
+[2026-09-15T00:02:36.816653+00:00] progress: elapsed=9726s  replay_steps=8,185  trades=0  events=26,947
+[2026-09-15T00:02:52.340565+00:00] progress: elapsed=9741s  replay_steps=8,191  trades=0  events=26,951
+[2026-09-15T00:03:08.604720+00:00] progress: elapsed=9758s  replay_steps=8,197  trades=0  events=26,953
+[2026-09-15T00:03:24.055050+00:00] progress: elapsed=9773s  replay_steps=8,203  trades=0  events=26,972
+[2026-09-15T00:03:40.058666+00:00] progress: elapsed=9789s  replay_steps=8,209  trades=0  events=26,989
+[2026-09-15T00:03:57.065204+00:00] progress: elapsed=9806s  replay_steps=8,216  trades=0  events=27,007
+[2026-09-15T00:04:13.470120+00:00] progress: elapsed=9823s  replay_steps=8,222  trades=0  events=27,007
+[2026-09-15T00:04:30.202978+00:00] progress: elapsed=9839s  replay_steps=8,228  trades=0  events=27,039
+[2026-09-15T00:04:45.750221+00:00] progress: elapsed=9855s  replay_steps=8,234  trades=0  events=27,043
+[2026-09-15T00:05:01.383161+00:00] progress: elapsed=9870s  replay_steps=8,239  trades=0  events=27,055
+[2026-09-15T00:05:18.262359+00:00] progress: elapsed=9887s  replay_steps=8,245  trades=0  events=27,093
+[2026-09-15T00:05:35.912633+00:00] progress: elapsed=9905s  replay_steps=8,251  trades=0  events=27,105
+[2026-09-15T00:05:51.250570+00:00] progress: elapsed=9920s  replay_steps=8,257  trades=0  events=27,136
+[2026-09-15T00:06:06.877456+00:00] progress: elapsed=9936s  replay_steps=8,262  trades=0  events=27,166
+[2026-09-15T00:06:24.863656+00:00] progress: elapsed=9954s  replay_steps=8,269  trades=0  events=27,170
+[2026-09-15T00:06:41.978863+00:00] progress: elapsed=9971s  replay_steps=8,276  trades=0  events=27,174
+[2026-09-15T00:06:58.788535+00:00] progress: elapsed=9988s  replay_steps=8,282  trades=0  events=27,201
+[2026-09-15T00:07:14.546958+00:00] progress: elapsed=10004s  replay_steps=8,288  trades=0  events=27,217
+[2026-09-15T00:07:30.920272+00:00] progress: elapsed=10020s  replay_steps=8,294  trades=0  events=27,229
+[2026-09-15T00:07:47.382199+00:00] progress: elapsed=10037s  replay_steps=8,300  trades=0  events=27,275
+[2026-09-15T00:08:03.274856+00:00] progress: elapsed=10052s  replay_steps=8,306  trades=0  events=27,304
+[2026-09-15T00:08:20.521296+00:00] progress: elapsed=10070s  replay_steps=8,312  trades=0  events=27,367
+[2026-09-15T00:08:36.090551+00:00] progress: elapsed=10085s  replay_steps=8,318  trades=0  events=27,373
+[2026-09-15T00:08:52.675454+00:00] progress: elapsed=10102s  replay_steps=8,323  trades=0  events=27,391
+[2026-09-15T00:09:09.475353+00:00] progress: elapsed=10119s  replay_steps=8,329  trades=0  events=27,391
+[2026-09-15T00:09:24.889355+00:00] progress: elapsed=10134s  replay_steps=8,334  trades=0  events=27,391
+[2026-09-15T00:09:41.004371+00:00] progress: elapsed=10150s  replay_steps=8,340  trades=0  events=27,391
+[2026-09-15T00:09:56.751014+00:00] progress: elapsed=10166s  replay_steps=8,346  trades=0  events=27,391
+[2026-09-15T00:10:12.781309+00:00] progress: elapsed=10182s  replay_steps=8,352  trades=0  events=27,395
+[2026-09-15T00:10:29.121266+00:00] progress: elapsed=10198s  replay_steps=8,358  trades=0  events=27,395
+[2026-09-15T00:10:46.225475+00:00] progress: elapsed=10215s  replay_steps=8,364  trades=0  events=27,395
+[2026-09-15T00:11:04.244311+00:00] progress: elapsed=10233s  replay_steps=8,370  trades=0  events=27,399
+[2026-09-15T00:11:20.918592+00:00] progress: elapsed=10250s  replay_steps=8,376  trades=0  events=27,413
+[2026-09-15T00:11:37.764935+00:00] progress: elapsed=10267s  replay_steps=8,382  trades=0  events=27,427
+[2026-09-15T00:11:53.058331+00:00] progress: elapsed=10282s  replay_steps=8,388  trades=0  events=27,431
+[2026-09-15T00:12:09.829128+00:00] progress: elapsed=10299s  replay_steps=8,393  trades=0  events=27,435
+[2026-09-15T00:12:27.423922+00:00] progress: elapsed=10317s  replay_steps=8,399  trades=0  events=27,443
+[2026-09-15T00:12:43.753242+00:00] progress: elapsed=10333s  replay_steps=8,404  trades=0  events=27,447
+[2026-09-15T00:13:00.345219+00:00] progress: elapsed=10350s  replay_steps=8,410  trades=0  events=27,455
+[2026-09-15T00:13:18.060929+00:00] progress: elapsed=10367s  replay_steps=8,416  trades=0  events=27,472
+[2026-09-15T00:13:35.250124+00:00] progress: elapsed=10384s  replay_steps=8,422  trades=0  events=27,476
+[2026-09-15T00:13:51.946684+00:00] progress: elapsed=10401s  replay_steps=8,428  trades=0  events=27,476
+[2026-09-15T00:14:07.550347+00:00] progress: elapsed=10417s  replay_steps=8,433  trades=0  events=27,479
+[2026-09-15T00:14:23.048429+00:00] progress: elapsed=10432s  replay_steps=8,438  trades=0  events=27,479
+[2026-09-15T00:14:39.910993+00:00] progress: elapsed=10449s  replay_steps=8,444  trades=0  events=27,479
+[2026-09-15T00:14:55.021284+00:00] progress: elapsed=10464s  replay_steps=8,449  trades=0  events=27,479
+[2026-09-15T00:15:10.183469+00:00] progress: elapsed=10479s  replay_steps=8,454  trades=0  events=27,479
+[2026-09-15T00:15:25.232220+00:00] progress: elapsed=10494s  replay_steps=8,459  trades=0  events=27,491
+[2026-09-15T00:15:43.080073+00:00] progress: elapsed=10512s  replay_steps=8,465  trades=0  events=27,495
+[2026-09-15T00:15:59.862401+00:00] progress: elapsed=10529s  replay_steps=8,471  trades=0  events=27,495
+[2026-09-15T00:16:14.923425+00:00] progress: elapsed=10544s  replay_steps=8,476  trades=0  events=27,495
+[2026-09-15T00:16:32.689471+00:00] progress: elapsed=10562s  replay_steps=8,482  trades=0  events=27,527
+[2026-09-15T00:16:48.938997+00:00] progress: elapsed=10578s  replay_steps=8,487  trades=0  events=27,533
+[2026-09-15T00:17:05.889909+00:00] progress: elapsed=10595s  replay_steps=8,493  trades=0  events=27,533
+[2026-09-15T00:17:21.390475+00:00] progress: elapsed=10611s  replay_steps=8,498  trades=0  events=27,539
+[2026-09-15T00:17:38.654928+00:00] progress: elapsed=10628s  replay_steps=8,504  trades=0  events=27,542
+[2026-09-15T00:17:56.087689+00:00] progress: elapsed=10645s  replay_steps=8,510  trades=0  events=27,542
+[2026-09-15T00:18:12.596271+00:00] progress: elapsed=10662s  replay_steps=8,515  trades=0  events=27,542
+[2026-09-15T00:18:27.743955+00:00] progress: elapsed=10677s  replay_steps=8,520  trades=0  events=27,550
+[2026-09-15T00:18:43.357524+00:00] progress: elapsed=10693s  replay_steps=8,525  trades=0  events=27,550
+[2026-09-15T00:19:00.305558+00:00] progress: elapsed=10710s  replay_steps=8,531  trades=0  events=27,551
+[2026-09-15T00:19:15.870571+00:00] progress: elapsed=10725s  replay_steps=8,536  trades=0  events=27,551
+[2026-09-15T00:19:31.883331+00:00] progress: elapsed=10741s  replay_steps=8,541  trades=0  events=27,565
+[2026-09-15T00:19:49.508461+00:00] progress: elapsed=10759s  replay_steps=8,547  trades=0  events=27,578
+[2026-09-15T00:20:05.755777+00:00] progress: elapsed=10775s  replay_steps=8,553  trades=0  events=27,578
+[2026-09-15T00:20:22.783405+00:00] progress: elapsed=10792s  replay_steps=8,559  trades=0  events=27,578
+[2026-09-15T00:20:39.529863+00:00] progress: elapsed=10809s  replay_steps=8,565  trades=0  events=27,582
+[2026-09-15T00:20:56.055497+00:00] progress: elapsed=10825s  replay_steps=8,571  trades=0  events=27,590
+[2026-09-15T00:21:13.529237+00:00] progress: elapsed=10843s  replay_steps=8,577  trades=0  events=27,590
+[2026-09-15T00:21:29.837934+00:00] progress: elapsed=10859s  replay_steps=8,582  trades=0  events=27,594
+[2026-09-15T00:21:45.610122+00:00] progress: elapsed=10875s  replay_steps=8,588  trades=0  events=27,594
+[2026-09-15T00:22:02.234041+00:00] progress: elapsed=10891s  replay_steps=8,594  trades=0  events=27,602
+[2026-09-15T00:22:19.473475+00:00] progress: elapsed=10909s  replay_steps=8,600  trades=0  events=27,641
+[2026-09-15T00:22:35.713409+00:00] progress: elapsed=10925s  replay_steps=8,605  trades=0  events=27,685
+[2026-09-15T00:22:51.721695+00:00] progress: elapsed=10941s  replay_steps=8,610  trades=0  events=27,693
+[2026-09-15T00:23:09.311540+00:00] progress: elapsed=10959s  replay_steps=8,616  trades=0  events=27,718
+[2026-09-15T00:23:25.803348+00:00] progress: elapsed=10975s  replay_steps=8,622  trades=0  events=27,730
+[2026-09-15T00:23:43.669626+00:00] progress: elapsed=10993s  replay_steps=8,628  trades=0  events=27,771
+[2026-09-15T00:23:59.703339+00:00] progress: elapsed=11009s  replay_steps=8,634  trades=0  events=27,779
+[2026-09-15T00:24:16.866874+00:00] progress: elapsed=11026s  replay_steps=8,640  trades=0  events=27,797
+[2026-09-15T00:24:31.922806+00:00] progress: elapsed=11041s  replay_steps=8,645  trades=0  events=27,803
+[2026-09-15T00:24:49.717469+00:00] progress: elapsed=11059s  replay_steps=8,651  trades=0  events=27,803
+[2026-09-15T00:25:05.559051+00:00] progress: elapsed=11075s  replay_steps=8,656  trades=0  events=27,818
+[2026-09-15T00:25:23.338687+00:00] progress: elapsed=11093s  replay_steps=8,662  trades=0  events=27,823
+[2026-09-15T00:25:39.627388+00:00] progress: elapsed=11109s  replay_steps=8,668  trades=0  events=27,834
+[2026-09-15T00:25:56.940910+00:00] progress: elapsed=11126s  replay_steps=8,674  trades=0  events=27,841
+[2026-09-15T00:26:12.711146+00:00] progress: elapsed=11142s  replay_steps=8,679  trades=0  events=27,847
+[2026-09-15T00:26:29.861259+00:00] progress: elapsed=11159s  replay_steps=8,685  trades=0  events=27,863
+[2026-09-15T00:26:46.651116+00:00] progress: elapsed=11176s  replay_steps=8,691  trades=0  events=27,879
+[2026-09-15T00:27:02.715981+00:00] progress: elapsed=11192s  replay_steps=8,696  trades=0  events=27,891
+[2026-09-15T00:27:18.762961+00:00] progress: elapsed=11208s  replay_steps=8,701  trades=0  events=27,891
+[2026-09-15T00:27:35.922045+00:00] progress: elapsed=11225s  replay_steps=8,707  trades=0  events=27,891
+[2026-09-15T00:27:51.660724+00:00] progress: elapsed=11241s  replay_steps=8,712  trades=0  events=27,903
+[2026-09-15T00:28:08.168029+00:00] progress: elapsed=11257s  replay_steps=8,717  trades=0  events=27,918
+[2026-09-15T00:28:24.225838+00:00] progress: elapsed=11274s  replay_steps=8,723  trades=0  events=27,924
+[2026-09-15T00:28:40.790588+00:00] progress: elapsed=11290s  replay_steps=8,728  trades=0  events=27,944
+[2026-09-15T00:28:57.767797+00:00] progress: elapsed=11307s  replay_steps=8,734  trades=0  events=27,948
+[2026-09-15T00:29:15.597077+00:00] progress: elapsed=11325s  replay_steps=8,739  trades=0  events=27,952
+[2026-09-15T00:29:33.194909+00:00] progress: elapsed=11342s  replay_steps=8,744  trades=0  events=27,964
+[2026-09-15T00:29:48.392475+00:00] progress: elapsed=11358s  replay_steps=8,749  trades=0  events=27,994
+[2026-09-15T00:30:03.997297+00:00] progress: elapsed=11373s  replay_steps=8,754  trades=0  events=28,068
+[2026-09-15T00:30:21.019439+00:00] progress: elapsed=11390s  replay_steps=8,760  trades=0  events=28,092
+[2026-09-15T00:30:37.584795+00:00] progress: elapsed=11407s  replay_steps=8,765  trades=0  events=28,118
+[2026-09-15T00:30:54.646440+00:00] progress: elapsed=11424s  replay_steps=8,771  trades=0  events=28,120
+[2026-09-15T00:31:09.779735+00:00] progress: elapsed=11439s  replay_steps=8,775  trades=0  events=28,133
+[2026-09-15T00:31:24.998514+00:00] progress: elapsed=11454s  replay_steps=8,779  trades=0  events=28,140
+[2026-09-15T00:31:41.909805+00:00] progress: elapsed=11471s  replay_steps=8,785  trades=0  events=28,194
+[2026-09-15T00:31:57.720004+00:00] progress: elapsed=11487s  replay_steps=8,790  trades=0  events=28,198
+[2026-09-15T00:32:14.109396+00:00] progress: elapsed=11503s  replay_steps=8,796  trades=0  events=28,202
+[2026-09-15T00:32:29.354757+00:00] progress: elapsed=11519s  replay_steps=8,801  trades=0  events=28,221
+[2026-09-15T00:32:44.493331+00:00] progress: elapsed=11534s  replay_steps=8,805  trades=0  events=28,235
+[2026-09-15T00:33:02.522764+00:00] progress: elapsed=11552s  replay_steps=8,811  trades=0  events=28,252
+[2026-09-15T00:33:19.817649+00:00] progress: elapsed=11569s  replay_steps=8,817  trades=0  events=28,283
+[2026-09-15T00:33:36.842509+00:00] progress: elapsed=11586s  replay_steps=8,823  trades=0  events=28,296
+[2026-09-15T00:33:54.310575+00:00] progress: elapsed=11604s  replay_steps=8,829  trades=0  events=28,304
+[2026-09-15T00:34:10.813461+00:00] progress: elapsed=11620s  replay_steps=8,834  trades=0  events=28,315
+[2026-09-15T00:34:28.296721+00:00] progress: elapsed=11638s  replay_steps=8,840  trades=0  events=28,324
+[2026-09-15T00:34:45.542819+00:00] progress: elapsed=11655s  replay_steps=8,846  trades=0  events=28,332
+[2026-09-15T00:35:02.837186+00:00] progress: elapsed=11672s  replay_steps=8,852  trades=0  events=28,344
+[2026-09-15T00:35:18.141914+00:00] progress: elapsed=11687s  replay_steps=8,857  trades=0  events=28,366
+[2026-09-15T00:35:33.977086+00:00] progress: elapsed=11703s  replay_steps=8,862  trades=0  events=28,396
+[2026-09-15T00:35:51.111988+00:00] progress: elapsed=11720s  replay_steps=8,868  trades=0  events=28,425
+[2026-09-15T00:36:06.727919+00:00] progress: elapsed=11736s  replay_steps=8,873  trades=0  events=28,442
+[2026-09-15T00:36:23.988783+00:00] progress: elapsed=11753s  replay_steps=8,878  trades=0  events=28,450
+[2026-09-15T00:36:40.611428+00:00] progress: elapsed=11770s  replay_steps=8,884  trades=0  events=28,463
+[2026-09-15T00:36:56.380780+00:00] progress: elapsed=11786s  replay_steps=8,889  trades=0  events=28,469
+[2026-09-15T00:37:11.673043+00:00] progress: elapsed=11801s  replay_steps=8,893  trades=0  events=28,475
+[2026-09-15T00:37:27.851684+00:00] progress: elapsed=11817s  replay_steps=8,898  trades=0  events=28,475
+[2026-09-15T00:37:44.314078+00:00] progress: elapsed=11834s  replay_steps=8,901  trades=0  events=28,475
+[2026-09-15T00:38:03.710705+00:00] progress: elapsed=11853s  replay_steps=8,905  trades=0  events=28,475
+[2026-09-15T00:38:22.763975+00:00] progress: elapsed=11872s  replay_steps=8,909  trades=0  events=28,475
+[2026-09-15T00:38:42.228803+00:00] progress: elapsed=11892s  replay_steps=8,913  trades=0  events=28,479
+[2026-09-15T00:38:57.956561+00:00] progress: elapsed=11907s  replay_steps=8,916  trades=0  events=28,514
+[2026-09-15T00:39:17.756060+00:00] progress: elapsed=11927s  replay_steps=8,920  trades=0  events=28,524
+[2026-09-15T00:39:32.944627+00:00] progress: elapsed=11942s  replay_steps=8,923  trades=0  events=28,529
+[2026-09-15T00:39:47.962098+00:00] progress: elapsed=11957s  replay_steps=8,926  trades=0  events=28,544
+[2026-09-15T00:40:04.594387+00:00] progress: elapsed=11974s  replay_steps=8,929  trades=0  events=28,575
+[2026-09-15T00:40:20.034952+00:00] progress: elapsed=11989s  replay_steps=8,932  trades=0  events=28,581
+[2026-09-15T00:40:39.594030+00:00] progress: elapsed=12009s  replay_steps=8,936  trades=0  events=28,593
+[2026-09-15T00:40:58.981868+00:00] progress: elapsed=12028s  replay_steps=8,940  trades=0  events=28,631
+[2026-09-15T00:41:18.770019+00:00] progress: elapsed=12048s  replay_steps=8,943  trades=0  events=28,631
+[2026-09-15T00:41:37.910607+00:00] progress: elapsed=12067s  replay_steps=8,947  trades=0  events=28,631
+[2026-09-15T00:41:57.146122+00:00] progress: elapsed=12087s  replay_steps=8,951  trades=0  events=28,638
+[2026-09-15T00:42:12.934439+00:00] progress: elapsed=12102s  replay_steps=8,954  trades=0  events=28,666
+[2026-09-15T00:42:31.971239+00:00] progress: elapsed=12121s  replay_steps=8,958  trades=0  events=28,683
+[2026-09-15T00:42:51.488948+00:00] progress: elapsed=12141s  replay_steps=8,962  trades=0  events=28,694
+[2026-09-15T00:43:08.120811+00:00] progress: elapsed=12157s  replay_steps=8,965  trades=0  events=28,718
+[2026-09-15T00:43:27.620593+00:00] progress: elapsed=12177s  replay_steps=8,969  trades=0  events=28,735
+[2026-09-15T00:43:42.707679+00:00] progress: elapsed=12192s  replay_steps=8,972  trades=0  events=28,749
+[2026-09-15T00:44:02.683450+00:00] progress: elapsed=12212s  replay_steps=8,976  trades=0  events=28,759
+[2026-09-15T00:44:19.412233+00:00] progress: elapsed=12229s  replay_steps=8,979  trades=0  events=28,759
+[2026-09-15T00:44:34.676524+00:00] progress: elapsed=12244s  replay_steps=8,982  trades=0  events=28,761
+[2026-09-15T00:44:53.904496+00:00] progress: elapsed=12263s  replay_steps=8,986  trades=0  events=28,763
+[2026-09-15T00:45:09.718910+00:00] progress: elapsed=12279s  replay_steps=8,989  trades=0  events=28,779
+[2026-09-15T00:45:29.029452+00:00] progress: elapsed=12298s  replay_steps=8,993  trades=0  events=28,794
+[2026-09-15T00:45:48.678757+00:00] progress: elapsed=12318s  replay_steps=8,997  trades=0  events=28,800
+[2026-09-15T00:46:03.886694+00:00] progress: elapsed=12333s  replay_steps=9,000  trades=0  events=28,800
+[2026-09-15T00:46:19.359201+00:00] progress: elapsed=12349s  replay_steps=9,003  trades=0  events=28,800
+[2026-09-15T00:46:38.697550+00:00] progress: elapsed=12368s  replay_steps=9,007  trades=0  events=28,809
+[2026-09-15T00:46:53.860147+00:00] progress: elapsed=12383s  replay_steps=9,010  trades=0  events=28,846
+[2026-09-15T00:47:09.238317+00:00] progress: elapsed=12399s  replay_steps=9,013  trades=0  events=28,846
+[2026-09-15T00:47:28.891127+00:00] progress: elapsed=12418s  replay_steps=9,016  trades=0  events=28,848
+[2026-09-15T00:47:48.417293+00:00] progress: elapsed=12438s  replay_steps=9,020  trades=0  events=28,858
+[2026-09-15T00:48:03.765642+00:00] progress: elapsed=12453s  replay_steps=9,023  trades=0  events=28,865
+[2026-09-15T00:48:20.914002+00:00] progress: elapsed=12470s  replay_steps=9,026  trades=0  events=28,890
+[2026-09-15T00:48:40.130030+00:00] progress: elapsed=12490s  replay_steps=9,030  trades=0  events=28,914
+[2026-09-15T00:49:00.146713+00:00] progress: elapsed=12510s  replay_steps=9,034  trades=0  events=28,929
+[2026-09-15T00:49:16.337018+00:00] progress: elapsed=12526s  replay_steps=9,037  trades=0  events=28,941
+[2026-09-15T00:49:31.823845+00:00] progress: elapsed=12541s  replay_steps=9,040  trades=0  events=28,979
+[2026-09-15T00:49:48.074548+00:00] progress: elapsed=12557s  replay_steps=9,043  trades=0  events=28,980
+[2026-09-15T00:50:04.056383+00:00] progress: elapsed=12573s  replay_steps=9,046  trades=0  events=28,984
+[2026-09-15T00:50:19.108176+00:00] progress: elapsed=12589s  replay_steps=9,049  trades=0  events=29,020
+[2026-09-15T00:50:34.317109+00:00] progress: elapsed=12604s  replay_steps=9,052  trades=0  events=29,044
+[2026-09-15T00:50:53.909527+00:00] progress: elapsed=12623s  replay_steps=9,056  trades=0  events=29,062
+[2026-09-15T00:51:09.933015+00:00] progress: elapsed=12639s  replay_steps=9,059  trades=0  events=29,062
+[2026-09-15T00:51:26.801755+00:00] progress: elapsed=12656s  replay_steps=9,063  trades=0  events=29,062

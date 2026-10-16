@@ -1,0 +1,24 @@
+{
+  "top_1_excluded": {
+    "excluded_top_n": 1,
+    "excluded_r_values": [],
+    "remaining_closed_trades": 0,
+    "winning_trades": 0,
+    "losing_trades": 0,
+    "win_rate": "0",
+    "expectancy_r": "0",
+    "profit_factor": null,
+    "net_r": "0"
+  },
+  "top_2_excluded": {
+    "excluded_top_n": 2,
+    "excluded_r_values": [],
+    "remaining_closed_trades": 0,
+    "winning_trades": 0,
+    "losing_trades": 0,
+    "win_rate": "0",
+    "expectancy_r": "0",
+    "profit_factor": null,
+    "net_r": "0"
+  }
+}

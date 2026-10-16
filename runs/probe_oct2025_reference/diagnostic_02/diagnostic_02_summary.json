@@ -1,0 +1,91 @@
+{
+  "diagnostic_run": 2,
+  "audit_title": "Read-Only Stop / Target / RR Geometry Audit",
+  "audit_timestamp": "2026-10-09T08:00:00Z",
+  "baseline_directory": "runs/probe_oct2025_reference",
+  "engine_codebase": "smc-trading-engine (Phase-A-v2 REFERENCE)",
+  "verification_checklist": {
+    "read_only_audit_conducted": true,
+    "source_code_inspected": true,
+    "strategy_logic_modified": false,
+    "engine_logic_modified": false,
+    "parameters_modified": false,
+    "configuration_modified": false,
+    "backtest_executed": false,
+    "future_data_used": false,
+    "total_active_candidates_evaluated": 294,
+    "reconciliation_exact": true
+  },
+  "rejection_summary": {
+    "STOP_TOO_WIDE": {
+      "count": 126,
+      "pct": 42.86,
+      "threshold": "3.50 ATR"
+    },
+    "RR_BELOW_MINIMUM": {
+      "count": 72,
+      "pct": 24.49,
+      "threshold": "3.80 R"
+    },
+    "HTF_CONTEXT_INVALID": {
+      "count": 59,
+      "pct": 20.07,
+      "threshold": "H4 Bias Alignment"
+    },
+    "TP2_NOT_BEYOND_TP1": {
+      "count": 34,
+      "pct": 11.56,
+      "threshold": "TP2 must be >= TP1"
+    },
+    "STOP_BELOW_MINIMUM": {
+      "count": 3,
+      "pct": 1.02,
+      "threshold": "0.25 ATR"
+    },
+    "SCORE_BELOW_THRESHOLD": {
+      "count": 0,
+      "pct": 0.0,
+      "threshold": "70 points (gate unreached)"
+    }
+  },
+  "core_code_paths": {
+    "setup_creation": "backtest/pipeline.py:728-803",
+    "entry_calculation": "backtest/pipeline.py:911-929",
+    "zone_selection": "strategy/confirmation/confirmation_engine.py:114-206",
+    "structural_stop": "backtest/pipeline.py:748-752, 930",
+    "target_selection_tp1": "strategy/targets/target_selector.py:120-185",
+    "target_selection_tp2": "strategy/targets/target_selector.py:120-185",
+    "reward_calculation": "decision/trade_decision_generator.py:224-229",
+    "blended_rr_calculation": "decision/trade_decision_generator.py:231-254",
+    "tp2_ordering_validation": "decision/trade_decision_generator.py:155-160",
+    "gate_evaluation": "decision/trade_decision_generator.py:112-180"
+  },
+  "rr_verification_stats": {
+    "total_verified": 72,
+    "passed": 72,
+    "failed": 0,
+    "pass_rate_pct": 100.0,
+    "max_absolute_error": "0.00e-26",
+    "formula_verified": "blended_rr = (0.30 * abs(tp1 - entry) + 0.70 * abs(tp2 - entry)) / abs(entry - stop)"
+  },
+  "stop_geometry_stats": {
+    "anchor_rule": "STOP-ANCHOR-01 (pool.price +/- 0.10 * ATR)",
+    "min_failure_atr": 3.5026,
+    "median_failure_atr": 5.6459,
+    "max_failure_atr": 26.8852,
+    "root_cause": "Pre-MSS sweep anchor preceded displacement leg; entry occurred on subsequent zone retest after large price expansion"
+  },
+  "tp2_geometry_stats": {
+    "total_failures": 34,
+    "failure_type": "TP2 closer to entry than TP1 (TP2 < TP1 for BULLISH)",
+    "min_inversion_points": -0.02,
+    "median_inversion_points": -0.6922,
+    "max_inversion_points": -23.527,
+    "root_cause": "TP1 (nearest internal) and TP2 (nearest external) selected independently without cross-target ordering constraint"
+  },
+  "final_decision": {
+    "verdict": "A \u2014 IMPLEMENTATION APPEARS CORRECT",
+    "verdict_code": "A",
+    "summary": "The geometry logic is behaving exactly according to the frozen strategy specification, documented DECISIONS.md records, and owner change logs. No implementation defects or mathematical bugs exist. The extreme stop distances and low blended RR multiples are structural consequences of the interaction between pre-MSS sweep stop anchoring, independent nearest-pool target selection, and the 3.8R gate threshold."
+  }
+}

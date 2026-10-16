@@ -1,0 +1,47 @@
+[2026-09-18T12:58:30.016206+00:00] Starting backtest run. CSV=C:\Users\hp\Downloads\xauusd_working\XAUUSD_ticks_2025-09-01_2026-08-31.csv window=(2026-03-01 00:00:00+00:00 -> 2026-03-14 00:00:00+00:00) output_dir=C:\Users\hp\Downloads\smc-trading-engine-milestone1\smc-trading-engine\research_round_5_stop_anchor
+[2026-09-18T12:58:30.016206+00:00] ATR-01 LOCKED: period=14, Wilder smoothing (docs/DECISIONS.md)
+[2026-09-18T12:58:30.016206+00:00] initial_equity=10000 (disclosed simplification -- see script docstring)
+[2026-09-18T12:58:30.038822+00:00] Streaming CSV -> ticks -> M1 -> M5/H4 fan-out (single pass, zero-materialization)...
+[2026-09-18T13:02:11.078729+00:00] progress: elapsed=221s  valid_ticks=1,775  skipped_before_window=44,903,938  invalid_rows=0  M5=1  H4=0  replay_steps=0  trades=0  events=0
+[2026-09-18T13:02:26.075023+00:00] progress: elapsed=236s  valid_ticks=855,820  skipped_before_window=44,903,938  invalid_rows=0  M5=447  H4=10  replay_steps=0  trades=0  events=0
+[2026-09-18T13:02:41.093548+00:00] progress: elapsed=251s  valid_ticks=1,522,433  skipped_before_window=44,903,938  invalid_rows=0  M5=934  H4=20  replay_steps=0  trades=0  events=0
+[2026-09-18T13:02:56.181464+00:00] progress: elapsed=266s  valid_ticks=2,326,988  skipped_before_window=44,903,938  invalid_rows=0  M5=1,452  H4=33  replay_steps=0  trades=0  events=0
+[2026-09-18T13:03:11.227920+00:00] progress: elapsed=281s  valid_ticks=2,490,792  skipped_before_window=44,903,938  invalid_rows=0  M5=1,613  H4=38  replay_steps=0  trades=0  events=0
+[2026-09-18T13:03:26.555820+00:00] progress: elapsed=297s  valid_ticks=2,702,506  skipped_before_window=44,903,938  invalid_rows=0  M5=1,809  H4=43  replay_steps=0  trades=0  events=0
+[2026-09-18T13:03:35.568211+00:00] Streaming complete. M5=2,124 H4=51 valid_ticks=3,056,144 invalid_rows=0
+[2026-09-18T13:03:35.568211+00:00] Starting ReplayPipeline over the full M5 series...
+[2026-09-18T13:03:41.620280+00:00] progress: elapsed=312s  replay_steps=180  trades=0  events=67
+[2026-09-18T13:03:56.755070+00:00] progress: elapsed=327s  replay_steps=299  trades=0  events=373
+[2026-09-18T13:04:11.889110+00:00] progress: elapsed=342s  replay_steps=383  trades=0  events=540
+[2026-09-18T13:04:26.991666+00:00] progress: elapsed=357s  replay_steps=479  trades=0  events=958
+[2026-09-18T13:04:42.047575+00:00] progress: elapsed=372s  replay_steps=565  trades=0  events=1,142
+[2026-09-18T13:04:57.052298+00:00] progress: elapsed=387s  replay_steps=644  trades=0  events=1,442
+[2026-09-18T13:05:12.133710+00:00] progress: elapsed=402s  replay_steps=711  trades=0  events=1,781
+[2026-09-18T13:05:27.268186+00:00] progress: elapsed=417s  replay_steps=772  trades=0  events=1,982
+[2026-09-18T13:05:42.424894+00:00] progress: elapsed=432s  replay_steps=839  trades=0  events=2,415
+[2026-09-18T13:05:57.512888+00:00] progress: elapsed=447s  replay_steps=902  trades=0  events=2,748
+[2026-09-18T13:06:12.747780+00:00] progress: elapsed=463s  replay_steps=965  trades=0  events=3,115
+[2026-09-18T13:06:27.916670+00:00] progress: elapsed=478s  replay_steps=1,031  trades=0  events=3,321
+[2026-09-18T13:06:43.108992+00:00] progress: elapsed=493s  replay_steps=1,102  trades=0  events=3,468
+[2026-09-18T13:06:58.163226+00:00] progress: elapsed=508s  replay_steps=1,164  trades=0  events=3,567
+[2026-09-18T13:07:13.373098+00:00] progress: elapsed=523s  replay_steps=1,220  trades=0  events=3,811
+[2026-09-18T13:07:28.638291+00:00] progress: elapsed=539s  replay_steps=1,277  trades=0  events=4,131
+[2026-09-18T13:07:43.806873+00:00] progress: elapsed=554s  replay_steps=1,336  trades=0  events=4,355
+[2026-09-18T13:07:59.057090+00:00] progress: elapsed=569s  replay_steps=1,395  trades=0  events=4,703
+[2026-09-18T13:08:14.140090+00:00] progress: elapsed=584s  replay_steps=1,451  trades=0  events=4,955
+[2026-09-18T13:08:29.685224+00:00] progress: elapsed=600s  replay_steps=1,512  trades=0  events=5,173
+[2026-09-18T13:08:44.781368+00:00] progress: elapsed=615s  replay_steps=1,573  trades=0  events=5,368
+[2026-09-18T13:08:59.967398+00:00] progress: elapsed=630s  replay_steps=1,635  trades=0  events=5,524
+[2026-09-18T13:09:14.989897+00:00] progress: elapsed=645s  replay_steps=1,695  trades=0  events=5,588
+[2026-09-18T13:09:30.155439+00:00] progress: elapsed=660s  replay_steps=1,747  trades=0  events=5,683
+[2026-09-18T13:09:45.281337+00:00] progress: elapsed=675s  replay_steps=1,792  trades=0  events=6,004
+[2026-09-18T13:10:00.359052+00:00] progress: elapsed=690s  replay_steps=1,842  trades=0  events=6,153
+[2026-09-18T13:10:15.583108+00:00] progress: elapsed=706s  replay_steps=1,893  trades=0  events=6,233
+[2026-09-18T13:10:30.632225+00:00] progress: elapsed=721s  replay_steps=1,945  trades=0  events=6,341
+[2026-09-18T13:10:45.883330+00:00] progress: elapsed=736s  replay_steps=1,994  trades=0  events=6,457
+[2026-09-18T13:11:01.264498+00:00] progress: elapsed=751s  replay_steps=2,037  trades=0  events=6,675
+[2026-09-18T13:11:16.394901+00:00] progress: elapsed=766s  replay_steps=2,078  trades=0  events=6,822
+[2026-09-18T13:11:31.637040+00:00] progress: elapsed=782s  replay_steps=2,121  trades=0  events=6,908
+[2026-09-18T13:11:32.673921+00:00] Replay complete.
+[2026-09-18T13:11:32.811760+00:00] DONE in 783s. trades=0 events=6,908 M5=2,124 H4=51
+[2026-09-18T13:11:32.811760+00:00] Outputs: research_round_5_stop_anchor\trades.jsonl, research_round_5_stop_anchor\events.jsonl, research_round_5_stop_anchor\statistics_final.json

@@ -1,0 +1,11 @@
+{
+ "behavior_note": "observation only; events.jsonl/trades.jsonl/statistics are unaffected by this module",
+ "candidate_rows": 15740,
+ "code_marker": "E0 (observation-only telemetry)",
+ "config_hash": "ecbfc8a5dc92fc7e25af485be3a9f34e44fa588629419276115800b9757fa9fe",
+ "engine": "REFERENCE",
+ "h4_log_rows": 44,
+ "schema": "e0_candidate_ledger/v1",
+ "telemetry_error_count": 0,
+ "telemetry_errors": []
+}

@@ -1,0 +1,10 @@
+bucket,count,percentage,cumulative_count,cumulative_percentage,is_near_miss_band,structural_note
+< 0.5R,18,25.00%,18,25.00%,NO,Sub-threshold
+0.5 - 1.0R,35,48.61%,53,73.61%,NO,Sub-threshold
+1.0 - 1.5R,13,18.06%,66,91.67%,NO,Sub-threshold
+1.5 - 2.0R,5,6.94%,71,98.61%,NO,Sub-threshold
+2.0 - 2.5R,1,1.39%,72,100.00%,NO,Sub-threshold
+2.5 - 3.0R,0,0.00%,72,100.00%,NO,Sub-threshold
+3.0 - 3.5R,0,0.00%,72,100.00%,YES,Near-miss band
+3.5 - 3.8R,0,0.00%,72,100.00%,YES,Near-miss band
+>= 3.8R,0,0.00%,72,100.00%,NO,Qualified
