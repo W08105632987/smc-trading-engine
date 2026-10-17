@@ -86,6 +86,7 @@ class Telemetry:
         self.errors: list[str] = []
         self._h4_max_confirmed_applied: Optional[datetime] = None
         self._decision_to_setup: dict[str, str] = {}
+        self.v4_merge_map: list[dict] = []  # V4: one row per merged (not constructed) duplicate candidate
 
     # ------------------------------------------------------------------ rows
     def _row(self, setup_id: str) -> dict:
@@ -102,6 +103,22 @@ class Telemetry:
         self.counters["zones_considered"] += 1
         if already_active:
             self.counters["zones_skipped_already_has_setup"] += 1
+
+    @_guard
+    def on_dedup_skip(self, at, zone, mss, item, anchor) -> None:
+        """V4: a duplicate variant was merged into `anchor` instead of being constructed. Observation only: records the
+        candidate-by-candidate merge mapping required by the patch acceptance (every merged candidate -> exactly one kept
+        candidate with identical zone bounds)."""
+        self.counters["v4_dedup_skipped"] += 1
+        self.v4_merge_map.append({
+            "skipped_zone_id": zone.zone_id, "skipped_mss_id": getattr(mss, "mss_id", None),
+            "skipped_pool_id": item.pool_id, "skipped_pool_price": item.pool_price,
+            "skipped_zone_upper": zone.upper, "skipped_zone_lower": zone.lower,
+            "kept_setup_id": anchor.kept_setup_id, "kept_zone_id": anchor.kept_zone_id, "kept_pool_id": anchor.kept_pool_id,
+            "anchor_pool_price": anchor.anchor_pool_price, "tolerance": anchor.tolerance,
+            "price_delta": abs(item.pool_price - anchor.anchor_pool_price),
+            "merged_at_step": at,
+        })
 
     @_guard
     def on_candidate(self, at, setup, zone, mss, sweep, pool, atr_at_setup, h4_state, admitted: bool,
@@ -325,6 +342,24 @@ class Telemetry:
         self.counters["h4_silent_transitions"] += 1
 
     # --------------------------------------------------------------- output
+    def _finalize_v4_merge_map(self) -> list[dict]:
+        """Join each merge row to the kept candidate's own ledger row (which may be constructed later in the same step) and
+        verify the zone bounds are identical. Pure read."""
+        out = []
+        for m in self.v4_merge_map:
+            kept = self.rows.get(m["kept_setup_id"])
+            row = dict(m)
+            row["kept_row_found"] = kept is not None
+            if kept is not None:
+                row["kept_zone_upper"], row["kept_zone_lower"] = kept.get("zone_upper"), kept.get("zone_lower")
+                row["kept_pool_price"] = kept.get("pool_price")
+                row["bounds_identical"] = (Decimal(str(m["skipped_zone_upper"])) == Decimal(str(kept.get("zone_upper")))
+                                           and Decimal(str(m["skipped_zone_lower"])) == Decimal(str(kept.get("zone_lower"))))
+            else:
+                row["bounds_identical"] = None
+            out.append(row)
+        return out
+
     def finalize_rows(self) -> list[dict]:
         out = []
         for sid in self.order:
@@ -343,11 +378,20 @@ class Telemetry:
         with open(d / "h4_transitions.jsonl", "w", encoding="utf-8") as f:
             for r in self.h4_log:
                 f.write(json.dumps(_j(r), sort_keys=True) + "\n")
+        v4_rows = self._finalize_v4_merge_map()
+        if v4_rows:
+            with open(d / "v4_merge_map.jsonl", "w", encoding="utf-8") as f:
+                for r in v4_rows:
+                    f.write(json.dumps(_j(r), sort_keys=True) + "\n")
         funnel = dict(sorted(self.counters.items()))
         (d / "funnel_counters.json").write_text(json.dumps(funnel, indent=1, sort_keys=True), encoding="utf-8")
         manifest = {"schema": SCHEMA, "candidate_rows": len(rows), "h4_log_rows": len(self.h4_log),
                     "telemetry_errors": list(self.errors[:50]), "telemetry_error_count": len(self.errors),
                     "behavior_note": "observation only; events.jsonl/trades.jsonl/statistics are unaffected by this module"}
+        if v4_rows:
+            manifest["v4_merge_rows"] = len(v4_rows)
+            manifest["v4_bounds_mismatch"] = sum(1 for r in v4_rows if r["bounds_identical"] is not True)
+            manifest["v4_unmapped_to_kept"] = sum(1 for r in v4_rows if r["kept_row_found"] is not True)
         if extra_manifest:
             manifest.update(extra_manifest)
         (d / "telemetry_manifest.json").write_text(json.dumps(_j(manifest), indent=1, sort_keys=True), encoding="utf-8")

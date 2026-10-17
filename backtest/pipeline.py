@@ -150,6 +150,7 @@ from core.domain.zones import Zone, ZoneType
 from core.events.schema import EventType, ExecutionEvent
 
 from backtest.telemetry import describe_targets as _telemetry_describe_targets
+from backtest.event_dedup import EventDedupRegistry, EventItem, event_key, plan_step  # V4
 from backtest.accounting import (
     AccountLedger, LegResult, TP1Split, combine_legs, initial_dollar_risk, leg_pnl, split_tp1_volume,
 )
@@ -208,6 +209,10 @@ class ReplayState:
     open_position_phase: Optional[str] = None  # "PRE_TP1" | "POST_TP1" | None
     trailing_current_sl: Optional[Decimal] = None
     completed_trades: list = field(default_factory=list)  # TradeRecord
+
+    # V4 (event-level de-duplication): persistent record of the event anchors seen so far in this run
+    # (see backtest/event_dedup.py). Pure bookkeeping; reads nothing from, and changes nothing in, risk/accounting state.
+    event_dedup: EventDedupRegistry = field(default_factory=EventDedupRegistry)
 
     # PHASE A (P0.2): explicit position-quantity accounting for the TP1
     # partial close. `original_volume` is the full volume at entry;
@@ -701,6 +706,11 @@ class ReplayPipeline:
 
         active_zone_ids = {s.originating_zone_id for s in self.state.active_setups.values()}
 
+        # V4: decide up-front (read-only) which candidates of this step are duplicate variants of one event.
+        dedup_plan, dedup_items = self._plan_event_dedup(
+            mss_events, fvg_by_disp, ob_by_mss, active_zone_ids, sweeps, pools, m5_atr,
+        )
+
         for mss in mss_events:
             matching_zones = fvg_by_disp.get(mss.displacement_id, []) + ob_by_mss.get(mss.mss_id, [])
             for zone in matching_zones:
@@ -718,6 +728,16 @@ class ReplayPipeline:
                     continue
                 if self.telemetry is not None:
                     self.telemetry.on_zone_considered(zone.zone_id, False)
+
+                # V4: a duplicate variant of an event that already has a kept candidate is NOT constructed again.
+                _dd = dedup_plan.get(zone.zone_id)
+                if _dd is not None and not _dd.keep:
+                    if self.telemetry is not None:
+                        _it = dedup_items[zone.zone_id]
+                        self.telemetry.on_dedup_skip(at, zone, mss, _it, _dd.anchor)
+                    continue
+                if _dd is not None and _dd.new_anchor is not None:
+                    self.state.event_dedup.register(dedup_items[zone.zone_id].key, _dd.new_anchor)
 
                 self._emit(events, zone.zone_id, EventType.ZONE_CREATED, zone.creation_timestamp,
                            zone.zone_id, None, zone.zone_type.value)
@@ -752,6 +772,40 @@ class ReplayPipeline:
                 self._emit(events, f"{candidate.setup_id}:CREATED", EventType.SETUP_CREATED, at,
                            candidate.setup_id, None, SetupState.WAITING_FOR_RETEST.value)
         return events
+
+    def _plan_event_dedup(self, mss_events, fvg_by_disp: dict, ob_by_mss: dict, active_zone_ids: set,
+                          sweeps, pools, m5_atr: dict) -> tuple:
+        """V4: READ-ONLY pre-pass over exactly the (mss, zone) pairs the construction loop below will turn into candidates
+        (same filters, same first-occurrence-per-zone rule). Returns (decisions_by_zone_id, items_by_zone_id).
+        Changes no state; the construction loop registers anchors as it constructs the kept candidates."""
+        items: list = []
+        seen_zone_ids: set = set()
+        for mss in mss_events:
+            for zone in fvg_by_disp.get(mss.displacement_id, []) + ob_by_mss.get(mss.mss_id, []):
+                if zone.direction != mss.direction:
+                    continue
+                if f"{zone.zone_id}:SETUP_CANDIDATE" in self.state.emitted_event_ids:
+                    continue
+                if zone.zone_id in active_zone_ids or zone.zone_id in seen_zone_ids:
+                    continue
+                seen_zone_ids.add(zone.zone_id)  # the construction loop's own marker keeps only the first (mss, zone) pair per zone
+                sweep = next((s for s in sweeps if s.sweep_id == mss.sweep_id), None)
+                pool = next((p for p in pools if sweep is not None and p.pool_id == sweep.liquidity_pool_id), None)
+                if sweep is None or pool is None:
+                    continue  # key cannot be formed -> no dedup for this candidate (behaves exactly as before)
+                created_at = max(zone.creation_timestamp, mss.confirmed_at)
+                atr = m5_atr.get(Candle.build_id(self._symbol, Timeframe.M5, created_at))
+                tolerance = 2 * self._run_config.tick_size
+                if atr is not None:
+                    tolerance = max(tolerance, self._config.strategy.equal_level_tolerance_atr.value * atr)
+                items.append(EventItem(
+                    zone_id=zone.zone_id, pool_id=pool.pool_id, pool_price=pool.price, tolerance=tolerance,
+                    key=event_key(zone.direction, zone.zone_type, zone.upper, zone.lower,
+                                  sweep.sweep_candle_id, mss.displacement_id, pool.type),
+                ))
+        if not items:
+            return {}, {}
+        return plan_step(items, self.state.event_dedup), {it.zone_id: it for it in items}
 
     def _build_setup_candidate(self, zone: Zone, mss: MSSEvent, sweeps, pools, m5_atr: dict) -> Setup:
         created_at = max(zone.creation_timestamp, mss.confirmed_at)
